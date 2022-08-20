@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MaintenanceActivity"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FFF0FF">
+
+    <TextView
+        android:id="@+id/tv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Maintenance"
+        android:textColor="#B765A6"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_mainId"
+        android:hint="MaintenanceId"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_houseId"
+        android:hint="HouseId"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_create"
+        android:hint="Creation Date"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_month"
+        android:hint="Month"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_amt"
+        android:hint="Maintenance Amount"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_paid"
+        android:hint="Maintenance Paid"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_date"
+        android:hint="Payment Date"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_lDate"
+        android:hint="Last Date"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_penalty"
+        android:hint="Penalty"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_user"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Add Maintenance"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#B765A6"
+        android:textColor="#000"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>

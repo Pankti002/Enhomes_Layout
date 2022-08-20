@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserActivity"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FFF0FF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_user"
+        android:text="User"
+        android:textSize="30sp"
+        android:textColor="#B765A6"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_userId"
+        android:hint="UserId"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_houseId"
+        android:hint="HouseId"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_roleId"
+        android:hint="RoleId"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_firstName"
+        android:hint="FirstName"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_lastName"
+        android:hint="LastName"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_dob"
+        android:hint="Date of Birth"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_age"
+        android:hint="Age"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_gender"
+        android:hint="Gender"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_contactNo"
+        android:hint="Contact No"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_email"
+        android:hint="Eamil"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_password"
+        android:hint="Password"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        />
+
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_user"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Add User"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#B765A6"
+        android:textColor="#000"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>
+
+</ScrollView>
