@@ -4,7 +4,7 @@
     package="com.enhomes">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,25 +17,29 @@
         android:theme="@style/Theme.Enhomes"
         tools:targetApi="31">
         <activity
-            android:name=".DisplayActivity"
+            android:name=".MaintenanceDisplayActivity"
             android:exported="false" />
+
         <activity
-            android:name=".StaffActivity"
+            android:name=".RoleDisplayActivity"
             android:exported="false" />
         <activity
             android:name=".MaintenanceActivity"
             android:exported="false" />
         <activity
+            android:name=".UserActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".UserActivity"
+            android:name=".RoleActivity"
             android:exported="false" />
         <activity
             android:name=".PlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".RoleActivity"
+            android:name=".StaffActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

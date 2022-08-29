@@ -22,7 +22,7 @@ import utils.util;
 
 public class UserActivity extends AppCompatActivity {
 
-    EditText edtUserId,edtHouseId,edtRoleId,edtFirstName,edtLastName,edtDateOfBirth,edtAge,edtGender,edtContactNo,edtEmail,edtPassword;
+    EditText edtHouseId,edtRoleId,edtFirstName,edtLastName,edtDateOfBirth,edtAge,edtGender,edtContactNo,edtEmail,edtPassword;
     Button btnUser;
 
     @Override
@@ -31,7 +31,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         btnUser=findViewById(R.id.btn_user);
-        edtUserId=findViewById(R.id.et_userId);
         edtHouseId=findViewById(R.id.et_houseId);
         edtRoleId=findViewById(R.id.et_roleId);
         edtFirstName=findViewById(R.id.et_firstName);
@@ -46,7 +45,6 @@ public class UserActivity extends AppCompatActivity {
         btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strUserId = edtUserId.getText().toString();
                 String strHouseId = edtHouseId.getText().toString();
                 String strRoleId = edtRoleId.getText().toString();
                 String strFirstName = edtFirstName.getText().toString();
@@ -58,10 +56,10 @@ public class UserActivity extends AppCompatActivity {
                 String strEmail = edtEmail.getText().toString();
                 String strPassword = edtPassword.getText().toString();
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, util.ROLE_URL, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, util.USER_URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Intent i = new Intent(UserActivity.this, DisplayActivity.class);
+                        Intent i = new Intent(UserActivity.this, RoleDisplayActivity.class);
                         startActivity(i);
                     }
                 }, new Response.ErrorListener() {
@@ -73,15 +71,14 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> hashMap = new HashMap<>();
-                        hashMap.put("user_id", strUserId);
-                        hashMap.put("house_id", strHouseId);
-                        hashMap.put("role_id", strRoleId);
-                        hashMap.put("first_name", strFirstName);
-                        hashMap.put("last_name", strLastName);
-                        hashMap.put("date_of_birth", strDateOfBirth);
+                        hashMap.put("houseId", strHouseId);
+                        hashMap.put("roleId", strRoleId);
+                        hashMap.put("firstName", strFirstName);
+                        hashMap.put("lastName", strLastName);
+                        hashMap.put("dateOfBirth", strDateOfBirth);
                         hashMap.put("age", strAge);
                         hashMap.put("gender", strGender);
-                        hashMap.put("contact_no", strContactNo);
+                        hashMap.put("contactNo", strContactNo);
                         hashMap.put("email", strEmail);
                         hashMap.put("password", strPassword);
 

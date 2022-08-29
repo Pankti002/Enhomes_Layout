@@ -25,7 +25,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ls_listview"
+        android:id="@+id/ls_maintenance_listview"
         android:divider="@android:color/transparent"
         android:dividerHeight="20dp"
         android:textColor="#000"

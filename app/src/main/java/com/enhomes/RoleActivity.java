@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ import utils.VolleySingleton;
 import utils.util;
 
 public class RoleActivity extends AppCompatActivity {
-    EditText edtRoleId, edtRoleName;
+    EditText edtRoleName;
     Button btnRole;
 
     @Override
@@ -31,19 +30,17 @@ public class RoleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_role);
 
         btnRole=findViewById(R.id.btn_role);
-        edtRoleId=findViewById(R.id.et_roleId);
         edtRoleName=findViewById(R.id.et_roleName);
 
         btnRole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strRoleId = edtRoleId.getText().toString();
                 String strRoleName = edtRoleName.getText().toString();
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, util.ROLE_URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Intent intent = new Intent(RoleActivity.this, DisplayActivity.class);
+                        Intent intent = new Intent(RoleActivity.this, RoleDisplayActivity.class);
                         startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
@@ -55,10 +52,8 @@ public class RoleActivity extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> hashMap = new HashMap<>();
-                        hashMap.put("roleId", strRoleId);
                         hashMap.put("roleName", strRoleName);
 
-                        Log.e(strRoleId,strRoleName);
                         return hashMap;
                     }
                 };

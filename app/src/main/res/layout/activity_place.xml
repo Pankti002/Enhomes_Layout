@@ -25,19 +25,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_placeId"
-        android:hint="PlaceId"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/et_placeDetails"
         android:hint="PlaceDetails"
         android:textSize="20sp"

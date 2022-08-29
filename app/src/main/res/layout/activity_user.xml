@@ -30,19 +30,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_userId"
-        android:hint="UserId"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/et_houseId"
         android:hint="HouseId"
         android:textSize="20sp"

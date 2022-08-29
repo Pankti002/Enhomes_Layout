@@ -24,19 +24,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_mainId"
-        android:hint="MaintenanceId"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/et_houseId"
         android:hint="HouseId"
         android:textSize="20sp"
@@ -47,31 +34,49 @@
         android:imeOptions="actionNext"
         />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_create"
-        android:hint="Creation Date"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_create"
+            android:hint="Creation Date"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_date"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_calendar"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/spinner_month"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
+
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_month"
-        android:hint="Month"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
 
     <EditText
         android:layout_width="match_parent"
@@ -82,11 +87,12 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="number"
         android:singleLine="true"
         android:imeOptions="actionNext"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_paid"
@@ -98,32 +104,98 @@
         android:singleLine="true"
         android:imeOptions="actionNext"
         />
-
-    <EditText
-        android:layout_width="match_parent"
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+    <RadioButton
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/et_date"
-        android:hint="Payment Date"
+        android:layout_weight="1"
+        android:id="@+id/paid_yes"
+        android:layout_marginTop="5dp"
+        android:text="Yes"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
         android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
         />
 
-    <EditText
+       <RadioButton
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:id="@+id/paid_no"
+           android:layout_marginTop="5dp"
+           android:text="No"
+           android:textSize="20sp"
+           android:textColor="#000"
+           />
+
+   </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_lDate"
-        android:hint="Last Date"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_payDate"
+            android:hint="Payment Date"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_payDate"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_calendar"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_lastDate"
+            android:hint="Last Date"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_lastDate"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_calendar"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -134,14 +206,15 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="number"
         android:singleLine="true"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         />
 
     <android.widget.Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_user"
+        android:id="@+id/btn_maintenance"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Add Maintenance"

@@ -19,23 +19,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:inputType="text"
         android:text="Staff"
         android:textColor="#B765A6"
         android:textSize="30sp"
         android:textStyle="bold" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_satffId"
-        android:hint="SatffId"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
 
     <EditText
         android:layout_width="match_parent"
@@ -50,57 +38,80 @@
         android:imeOptions="actionNext"
         />
 
-    <EditText
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_type"
-        android:hint="Type"
+        android:layout_height="30dp"
+        android:id="@+id/spinner_type"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
+
         />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_entryTime"
-        android:hint="Entry Time"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        android:orientation="horizontal">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_exitTime"
-        android:hint="Exit Time"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_entry"
+            android:hint="Entry Time"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
 
-    <EditText
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_entry"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_time"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_paid"
-        android:hint="Maintenance Paid"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_exit"
+            android:hint="Exit Time"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_exit"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_time"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -110,6 +121,7 @@
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
+        android:inputType="phone"
         android:textColorHint="#000"
         android:singleLine="true"
         android:imeOptions="actionNext"
@@ -137,6 +149,7 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="textEmailAddress"
         android:singleLine="true"
         android:imeOptions="actionNext"
         />
@@ -149,11 +162,12 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="textPassword"
         android:singleLine="true"
         android:imeOptions="actionDone"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_allowed"
@@ -166,6 +180,35 @@
         android:imeOptions="actionNext"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/allowed_yes"
+            android:layout_marginTop="5dp"
+            android:text="Yes"
+            android:textSize="20sp"
+            android:textColor="#000"
+            />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/allowed_no"
+            android:layout_marginTop="5dp"
+            android:text="No"
+            android:textSize="20sp"
+            android:textColor="#000"
+            />
+
+    </LinearLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,6 +218,7 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="text"
         android:singleLine="true"
         android:imeOptions="actionNext"
         />
@@ -188,6 +232,7 @@
         android:layout_marginTop="10dp"
         android:textColor="#000"
         android:textColorHint="#000"
+        android:inputType="phone"
         android:singleLine="true"
         android:imeOptions="actionNext"
         />

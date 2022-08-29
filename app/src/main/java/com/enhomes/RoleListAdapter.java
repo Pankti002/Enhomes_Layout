@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyListAdapter extends BaseAdapter {
+public class RoleListAdapter extends BaseAdapter {
     Context context;
-    ArrayList<LangModel> langModelArrayList;
-    public MyListAdapter(Context context, ArrayList<LangModel> langModelArrayList) {
+    ArrayList<RoleLangModel> langModelArrayList;
+    public RoleListAdapter(Context context, ArrayList<RoleLangModel> langModelArrayList) {
         this.context=context;
         this.langModelArrayList=langModelArrayList;
     }
@@ -40,7 +40,7 @@ public class MyListAdapter extends BaseAdapter {
 
         TextView tvData=view.findViewById(R.id.tv_data);
 
-        tvData.setText(langModelArrayList.get(position).getRoleId()+" "+langModelArrayList.get(position).getRoleName());
+        tvData.setText(langModelArrayList.get(position).getRoleName());
 
         return view;
     }

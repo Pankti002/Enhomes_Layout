@@ -15,12 +15,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import utils.VolleySingleton;
 import utils.util;
 
-public class DisplayActivity extends AppCompatActivity {
+public class RoleDisplayActivity extends AppCompatActivity {
 
     ListView listView;
     @Override
@@ -30,25 +29,24 @@ public class DisplayActivity extends AppCompatActivity {
 
         listView=findViewById(R.id.ls_listview);
 
-        ArrayList<LangModel> arrayList=new ArrayList<LangModel>();
+        ArrayList<RoleLangModel> arrayList=new ArrayList<RoleLangModel>();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, util.ROLE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONArray jsonArray = new JSONArray(response);
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String strRoleId = jsonObject.getString("roleId");
-                        String strRoleName = jsonObject.getString("roleName");
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String strRoleName = jsonObject1.getString("roleName");
 
-                        LangModel langModel = new LangModel();
-                        langModel.setRoleId(strRoleId);
-                        langModel.setRoleName(strRoleName);
+                        RoleLangModel roleLangModel = new RoleLangModel();
+                        roleLangModel.setRoleName(strRoleName);
 
-                        arrayList.add(langModel);
+                        arrayList.add(roleLangModel);
                     }
-                    MyListAdapter myListAdapter = new MyListAdapter(DisplayActivity.this, arrayList);
+                    RoleListAdapter myListAdapter = new RoleListAdapter(RoleDisplayActivity.this, arrayList);
                     listView.setAdapter(myListAdapter);
 
                 } catch (JSONException e) {
@@ -62,7 +60,7 @@ public class DisplayActivity extends AppCompatActivity {
             }
         });
 
-        VolleySingleton.getInstance(DisplayActivity.this).addToRequestQueue(stringRequest);
+        VolleySingleton.getInstance(RoleDisplayActivity.this).addToRequestQueue(stringRequest);
 
 
     }
