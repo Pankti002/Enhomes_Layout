@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,7 +38,9 @@ import utils.util;
 public class MaintenanceActivity extends AppCompatActivity {
     EditText edtHouseId, edtMaintenanceAmount, edtPenalty;
     Button btnMaintenance;
+    String strMaintenanceMonth;
 
+    RadioGroup radioGroup;
     Spinner spinnerMonth;
     String strMonths[]={"Select a Month","January","February","March","April","May","June","July","August","September",
             "October","November","December"};
@@ -68,6 +73,22 @@ public class MaintenanceActivity extends AppCompatActivity {
                 };
         spinnerMonth.setAdapter(arrayAdapter);
 
+        spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                strMaintenanceMonth=strMonths[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        //radio Button
+        radioGroup=findViewById(R.id.radio_grp);
+
 
 
         //Date :- creationDate,paymentDate,lastDate
@@ -90,7 +111,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvDisDate.setText(dayOfMonth+"-"+(month+1)+"-"+year);
+                        tvDisDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -103,7 +124,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvPayDate.setText(dayOfMonth+"-"+(month+1)+"-"+year);
+                        tvPayDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -116,7 +137,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvLastDate.setText(dayOfMonth+"-"+(month+1)+"-"+year);
+                        tvLastDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -137,37 +158,57 @@ public class MaintenanceActivity extends AppCompatActivity {
                 String strHouseId=edtHouseId.getText().toString();
                 String strMaintenanceAmount=edtMaintenanceAmount.getText().toString();
                 String strPenalty=edtPenalty.getText().toString();
-               //String strCreateDate=tvDisDate.getText().toString();
-                //String strPaymentDate=tvPayDate.getText().toString();
-                //String strLastDate=tvLastDate.getText().toString();
+                String strCreateDate=tvDisDate.getText().toString();
+                String strPaymentDate=tvPayDate.getText().toString();
+                String strLastDate=tvLastDate.getText().toString();
+                int id= radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = findViewById(id);
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, util.MAINTENANCE_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent = new Intent(MaintenanceActivity.this, MaintenanceDisplayActivity.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                String strRadioButton=radioButton.getText().toString();
+                Log.e("House: ",strHouseId);
+                Log.e("CreateDate: ",strCreateDate);
+                Log.e("PayDate: ",strPaymentDate);
+                Log.e("LastDate: ",strLastDate);
 
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> hashMap = new HashMap<>();
-                        hashMap.put("houseId", strHouseId);
-                        hashMap.put("maintenanceAmount", strMaintenanceAmount);
-                        hashMap.put("penalty", strPenalty);
-                        //hashMap.put("createDate", strCreateDate);
-                        //hashMap.put("paymentDate", strPaymentDate);
-                        //hashMap.put("lastDate", strLastDate);
-                        return hashMap;
-                    }
-                };
-                VolleySingleton.getInstance(MaintenanceActivity.this).addToRequestQueue(stringRequest);
+                apiCall(strHouseId,strMaintenanceMonth,strPenalty,strCreateDate,strPaymentDate,strLastDate,strRadioButton,strMaintenanceAmount);
+
             }
         });
+
+    }
+
+    private void apiCall( String strHouseId, String strMaintenanceMonth, String strPenalty, String strCreateDate, String strPaymentDate, String strLastDate, String strRadioButton, String strMaintenanceAmount) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, util.MAINTENANCE_URL, new Response.Listener<String>() {
+            @Override
+
+            public void onResponse(String response) {
+                Log.e("api calling done",response);
+                Intent intent = new Intent(MaintenanceActivity.this, MaintenanceDisplayActivity.class);
+                startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> hashMap = new HashMap<>();
+                hashMap.put("house", strHouseId);
+                hashMap.put("creationDate", strCreateDate);
+                hashMap.put("month", strMaintenanceMonth);
+                hashMap.put("maintenanceAmount", strMaintenanceAmount);
+                hashMap.put("maintenancePaid", strRadioButton);
+                hashMap.put("paymentDate", strPaymentDate);
+                hashMap.put("lastDate", strLastDate);
+                hashMap.put("penalty", strPenalty);
+                return hashMap;
+
+
+            }
+        };
+        VolleySingleton.getInstance(MaintenanceActivity.this).addToRequestQueue(stringRequest);
 
     }
 }
