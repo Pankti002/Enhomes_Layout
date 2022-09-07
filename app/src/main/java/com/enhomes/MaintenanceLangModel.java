@@ -1,14 +1,14 @@
 package com.enhomes;
 
 public class MaintenanceLangModel {
-    String houseId,maintenanceAmount, creationDate,paymentDate,lastDate,penalty;
+    String house, maintenanceAmount, creationDate,paymentDate,lastDate,penalty, maintenancePaid, month;
 
     public String getHouseId() {
-        return houseId;
+        return house;
     }
 
     public void setHouseId(String houseId) {
-        this.houseId = houseId;
+        this.house = house;
     }
 
     public String getMaintenanceAmount() {
@@ -49,5 +49,21 @@ public class MaintenanceLangModel {
 
     public void setPenalty(String penalty) {
         this.penalty = penalty;
+    }
+
+    public String getMaintenancePaid() {
+        return maintenancePaid;
+    }
+
+    public void setMaintenancePaid(String maintenancePaid) {
+        this.maintenancePaid = maintenancePaid;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 }

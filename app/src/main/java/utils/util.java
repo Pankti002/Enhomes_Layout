@@ -6,5 +6,6 @@ public class util {
     public static String ROLE_URL= MAIN_URL+"role";
     public static String USER_URL= MAIN_URL+"user";
     public static String MAINTENANCE_URL= MAIN_URL+"maintenance";
+    public static String STAFF_URL= MAIN_URL+"staff";
 
 }

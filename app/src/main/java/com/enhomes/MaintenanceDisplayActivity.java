@@ -38,20 +38,26 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        String strHouseId = jsonObject1.getString("houseId");
-                        String strMaintenanceAmount=jsonObject1.getString("maintenanceAmount");
+                        String strHouseId = jsonObject1.getString("house");
                         String strCreationDate=jsonObject1.getString("creationDate");
+                        String strMonth=jsonObject1.getString("month");
+                        String strMaintenanceAmount=jsonObject1.getString("maintenanceAmount");
+                        String strPaid=jsonObject1.getString("maintenancePaid");
                         String strPayDate=jsonObject1.getString("paymentDate");
                         String strLastDate=jsonObject1.getString("lastDate");
                         String strPenalty=jsonObject1.getString("penalty");
 
                         MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
                         maintenanceLangModel.setHouseId(strHouseId);
-                        maintenanceLangModel.setMaintenanceAmount(strMaintenanceAmount);
                         maintenanceLangModel.setCreationDate(strCreationDate);
+                        maintenanceLangModel.setMonth(strMonth);
+                        maintenanceLangModel.setMaintenanceAmount(strMaintenanceAmount);
+                        maintenanceLangModel.setMaintenancePaid(strPaid);
                         maintenanceLangModel.setPaymentDate(strPayDate);
                         maintenanceLangModel.setLastDate(strLastDate);
                         maintenanceLangModel.setPenalty(strPenalty);
+
+
 
                         arrayList.add(maintenanceLangModel);
                     }
