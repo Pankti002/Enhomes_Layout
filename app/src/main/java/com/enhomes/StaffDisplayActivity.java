@@ -41,7 +41,7 @@ public class StaffDisplayActivity extends AppCompatActivity {
             }
         });
 
-            StaffApi();
+        StaffApi();
     }
 
     private void StaffApi() {

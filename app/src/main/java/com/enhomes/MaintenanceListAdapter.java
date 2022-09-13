@@ -2,6 +2,7 @@ package com.enhomes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.VolleySingleton;
+import utils.util;
 
 public class MaintenanceListAdapter extends BaseAdapter {
     Context context;
@@ -47,7 +59,7 @@ public class MaintenanceListAdapter extends BaseAdapter {
 
         TextView tvData=view.findViewById(R.id.tv_data);
 
-        tvData.setText(maintenanceLangModelArrayList.get(position).getHouseId()+" "+ maintenanceLangModelArrayList.get(position).getCreationDate()
+        tvData.setText(maintenanceLangModelArrayList.get(position).getHouse()+" "+ maintenanceLangModelArrayList.get(position).getCreationDate()
         +" "+ maintenanceLangModelArrayList.get(position).getMonth()+" "+ maintenanceLangModelArrayList.get(position).getMaintenanceAmount()+" "
                 + maintenanceLangModelArrayList.get(position).getMaintenancePaid()+" "+ maintenanceLangModelArrayList.get(position).getPaymentDate()+
                 maintenanceLangModelArrayList.get(position).getLastDate()+ maintenanceLangModelArrayList.get(position).getPenalty());
@@ -67,12 +79,14 @@ public class MaintenanceListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MaintenanceUpdateActivity.class);
-                intent.putExtra("MAINTENANCE_ID", maintenanceLangModelArrayList.get(position).getMaintenanceId());
+                intent.putExtra("MAINTENANCE_ID", maintenanceLangModelArrayList.get(position).get_id());
                 intent.putExtra("MAINTENANCE_AMOUNT",maintenanceLangModelArrayList.get(position).getMaintenanceAmount());
                 intent.putExtra("PENALTY", maintenanceLangModelArrayList.get(position).getPenalty());
                 intent.putExtra("CREATION_DATE",maintenanceLangModelArrayList.get(position).getCreationDate());
                 intent.putExtra("PAYMENT_DATE",maintenanceLangModelArrayList.get(position).getPaymentDate());
                 intent.putExtra("LAST_DATE",maintenanceLangModelArrayList.get(position).getLastDate());
+
+
 
                 context.startActivity(intent);
 
@@ -82,7 +96,9 @@ public class MaintenanceListAdapter extends BaseAdapter {
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String id = maintenanceLangModelArrayList.get(position).get_id();
+                Log.e("id: ",""+id);
+                deleteAPI(id);
             }
         });
 
@@ -98,6 +114,36 @@ public class MaintenanceListAdapter extends BaseAdapter {
 //            }
 //        });
         return view;
+    }
+
+    private void deleteAPI(String id) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, util.MAINTENANCE_URL, new Response.Listener<String>() {
+            @Override
+
+            public void onResponse(String response) {
+                Log.e("api calling done",response);
+                Intent intent = new Intent(context, MaintenanceDisplayActivity.class);
+                context.startActivity(intent);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> hashMap = new HashMap<>();
+                hashMap.put("_id",id);
+                return hashMap;
+
+
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+
     }
 }
 

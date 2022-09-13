@@ -1,8 +1,16 @@
 package com.enhomes;
 
 public class StaffLangModel {
-    String staffMemberName, type, entryTime, exitTime, contactNo, address,
+    String _id,staffMemberName, type, entryTime, exitTime, contactNo, address,
             email , password ,  isAllowed ,  agencyName , agencyContactNumber;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public String getStaffMemberName() {
         return staffMemberName;

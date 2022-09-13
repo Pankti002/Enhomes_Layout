@@ -3,6 +3,7 @@ package com.enhomes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,8 +58,8 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        //JSONObject jsonObject2 = jsonObject1.getJSONObject("house");
-                        String strHouseId = jsonObject1.getString("_id");
+//                        JSONObject jsonObject2 = jsonObject1.getJSONObject("house");
+                        String strMain_id = jsonObject1.getString("_id");
                         String strCreationDate=jsonObject1.getString("creationDate");
                         String strMonth=jsonObject1.getString("month");
                         String strMaintenanceAmount=jsonObject1.getString("maintenanceAmount");
@@ -67,8 +68,8 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                         String strLastDate=jsonObject1.getString("lastDate");
                         String strPenalty=jsonObject1.getString("penalty");
 
-                        MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
-                        maintenanceLangModel.setHouseId(strHouseId);
+                         MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
+                        maintenanceLangModel.set_id(strMain_id);
                         maintenanceLangModel.setCreationDate(strCreationDate);
                         maintenanceLangModel.setMonth(strMonth);
                         maintenanceLangModel.setMaintenanceAmount(strMaintenanceAmount);

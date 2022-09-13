@@ -1,22 +1,22 @@
 package com.enhomes;
 
 public class MaintenanceLangModel {
-    String house,maintenanceId, maintenanceAmount, creationDate,paymentDate,lastDate,penalty, maintenancePaid, month;
+    String house,_id, maintenanceAmount, creationDate,paymentDate,lastDate,penalty, maintenancePaid, month;
 
-    public String getHouseId() {
+    public String getHouse() {
         return house;
     }
 
-    public void setHouseId(String houseId) {
+    public void setHouse(String house) {
         this.house = house;
     }
 
-    public String getMaintenanceId() {
-        return maintenanceId;
+    public String get_id() {
+        return _id;
     }
 
-    public void setMaintenanceId(String maintenanceId) {
-        this.maintenanceId = maintenanceId;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getMaintenanceAmount() {
