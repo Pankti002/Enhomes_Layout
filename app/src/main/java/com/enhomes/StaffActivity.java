@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,12 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,8 +33,10 @@ import utils.util;
 
 public class StaffActivity extends AppCompatActivity {
 
-    EditText edtStaffName, edtContact, edtAddress, edtEamil, edtPassword,
+    EditText edtStaffName, edtContact, edtAddress, edtEmail, edtPassword,
     edtAgencyName, edtAgencyContact;
+
+    EditText edtEntryTime, edtExitTime;
 
     Button btnStaff;
 
@@ -48,8 +46,8 @@ public class StaffActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
 
-    ImageButton btnEntry, btnExit;
-    TextView tvEntry, tvExit;
+//    ImageButton btnEntry, btnExit;
+//    TextView tvEntry, tvExit;
     private int hour;
     private int minute;
 
@@ -89,47 +87,46 @@ public class StaffActivity extends AppCompatActivity {
 
 
         //time
-        tvEntry=findViewById(R.id.tv_entry);
-        tvExit=findViewById(R.id.tv_exit);
-        btnEntry=findViewById(R.id.btn_entry);
-        btnExit=findViewById(R.id.btn_exit);
-
-
-        Calendar calendar =Calendar.getInstance();
-        hour=calendar.get(Calendar.HOUR_OF_DAY);
-        minute=calendar.get(Calendar.MINUTE);
-
-        //entry time
-        btnEntry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String hour=String.valueOf(hourOfDay);
-                        String min=String.valueOf(minute);
-                        tvEntry.setText(hour+":"+min+":00");
-                    }
-                },hour, minute, true);
-
-                timePickerDialog.show();
-            }
-        });
-
-        //exit time
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        tvExit.setText(hourOfDay+":"+minute);
-                    }
-                },hour, minute, true);
-
-                timePickerDialog.show();
-            }
-        });
+//        tvEntry=findViewById(R.id.tv_entry);
+//        tvExit=findViewById(R.id.tv_exit);
+//        btnEntry=findViewById(R.id.btn_entry);
+//        btnExit=findViewById(R.id.btn_exit);
+//
+//
+//        Calendar calendar =Calendar.getInstance();
+//        hour=calendar.get(Calendar.HOUR_OF_DAY);
+//        minute=calendar.get(Calendar.MINUTE);
+//
+//        //entry time
+//        btnEntry.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        tvEntry.setText(hourOfDay+":"+minute);
+//                    }
+//                },hour, minute, true);
+//
+//                timePickerDialog.show();
+//            }
+//        });
+//
+//        //exit time
+//        btnExit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//
+//                        tvExit.setText(hourOfDay+":"+minute);
+//                    }
+//                },hour, minute, true);
+//
+//                timePickerDialog.show();
+//            }
+//        });
 
 
         //radio Button
@@ -142,10 +139,13 @@ public class StaffActivity extends AppCompatActivity {
         edtStaffName=findViewById(R.id.et_name);
         edtContact=findViewById(R.id.et_contact);
         edtAddress=findViewById(R.id.et_add);
-        edtEamil=findViewById(R.id.et_email);
+        edtEmail =findViewById(R.id.et_email);
         edtPassword=findViewById(R.id.et_password);
         edtAgencyName=findViewById(R.id.et_agencyName);
         edtAgencyContact=findViewById(R.id.et_agencyContact);
+
+        edtEntryTime=findViewById(R.id.tv_entry);
+        edtExitTime=findViewById(R.id.tv_exit);
 
         btnStaff=findViewById(R.id.btn_staff);
 
@@ -155,12 +155,12 @@ public class StaffActivity extends AppCompatActivity {
                 String strStaffName=edtStaffName.getText().toString();
                 String strContact=edtContact.getText().toString();
                 String strAddress=edtAddress.getText().toString();
-                String strEmail=edtEamil.getText().toString();
+                String strEmail= edtEmail.getText().toString();
                 String strPassword=edtPassword.getText().toString();
                 String strAgencyName=edtAgencyName.getText().toString();
                 String strAgencyContact=edtAgencyContact.getText().toString();
-                String strEntryTime=tvEntry.getText().toString();
-                String strExitTime=tvExit.getText().toString();
+                String strEntryTime=edtEntryTime.getText().toString();
+                String strExitTime=edtExitTime.getText().toString();
 
                 int id= radioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(id);

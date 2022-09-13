@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF0FF">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+   >
+    <TextView
+        android:id="@+id/tv_create"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:hint="Creation Date"
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:textSize="20sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_edit"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_delete"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_delete_24"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/et_amt"
+        android:hint="Maintenance Amount"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:inputType="number"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_edit"
+                android:padding="10dp"
+                android:src="@drawable/ic_edit"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_delete"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_delete_24"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/tv_payDate"
+        android:hint="Payment Date"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+
+        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_edit"
+                android:padding="10dp"
+                android:src="@drawable/ic_edit"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_delete"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_delete_24"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/tv_lastDate"
+        android:hint="Last Date"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_edit"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_delete"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_delete_24"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/et_penalty"
+        android:hint="Penalty"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:inputType="number"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_edit"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_delete"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_delete_24"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>

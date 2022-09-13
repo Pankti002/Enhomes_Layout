@@ -8,6 +8,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +93,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
 
 
+
         //Date :- creationDate,paymentDate,lastDate
         tvDisDate=findViewById(R.id.tv_create);
         tvPayDate=findViewById(R.id.tv_payDate);
@@ -111,7 +114,18 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvDisDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
+                        CharSequence strDate = null;
+                        Time chosenDate = new Time();
+                        chosenDate.set(dayOfMonth, month, year);
+                        Log.e("year: ", String.valueOf(year));
+                        Log.e("month: ", String.valueOf(month));
+                        Log.e("day: ", String.valueOf(dayOfMonth));
+
+                        long dtDob = chosenDate.toMillis(true);
+
+                        strDate = DateFormat.format("yyyy/MM/dd", dtDob);
+
+                        tvDisDate.setText(strDate);
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -124,7 +138,15 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvPayDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
+                        CharSequence strDate = null;
+                        Time chosenDate = new Time();
+                        chosenDate.set(dayOfMonth, month, year);
+                        long dtDob = chosenDate.toMillis(true);
+
+                        strDate = DateFormat.format("yyyy/MM/dd", dtDob);
+
+                        tvPayDate.setText(strDate);
+
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -137,7 +159,15 @@ public class MaintenanceActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MaintenanceActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tvLastDate.setText(year+"-"+0+(month+1)+"-"+dayOfMonth);
+                        CharSequence strDate = null;
+                        Time chosenDate = new Time();
+                        chosenDate.set(dayOfMonth, month, year);
+                        long dtDob = chosenDate.toMillis(true);
+
+                        strDate = DateFormat.format("yyyy/MM/dd", dtDob);
+
+                        tvLastDate.setText(strDate);
+
                     }
                 },date,month,year);
                 datePickerDialog.show();
@@ -164,12 +194,11 @@ public class MaintenanceActivity extends AppCompatActivity {
                 int id= radioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(id);
 
-                String strRadioButton=radioButton.getText().toString();
-                Log.e("House: ",strHouseId);
-                Log.e("CreateDate: ",strCreateDate);
-                Log.e("PayDate: ",strPaymentDate);
-                Log.e("LastDate: ",strLastDate);
+                Log.e("Create: ",strCreateDate);
+                Log.e("Payment: ",strPaymentDate);
+                Log.e("Last: ",strLastDate);
 
+                String strRadioButton=radioButton.getText().toString();
                 apiCall(strHouseId,strMaintenanceMonth,strPenalty,strCreateDate,strPaymentDate,strLastDate,strRadioButton,strMaintenanceAmount);
 
             }
