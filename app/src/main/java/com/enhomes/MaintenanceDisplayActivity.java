@@ -34,7 +34,8 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
 
         listview = findViewById(R.id.ls_maintenance_listview);
 
-                btnAdd=findViewById(R.id.btn_add);
+        //Update button
+        btnAdd=findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +59,8 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-//                        JSONObject jsonObject2 = jsonObject1.getJSONObject("house");
-                        String strMain_id = jsonObject1.getString("_id");
+                        //JSONObject jsonObject2 = jsonObject1.getJSONObject("house");
+                        String strMaintenanceId = jsonObject1.getString("_id");
                         String strCreationDate=jsonObject1.getString("creationDate");
                         String strMonth=jsonObject1.getString("month");
                         String strMaintenanceAmount=jsonObject1.getString("maintenanceAmount");
@@ -69,7 +70,7 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                         String strPenalty=jsonObject1.getString("penalty");
 
                          MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
-                        maintenanceLangModel.set_id(strMain_id);
+                        maintenanceLangModel.set_id(strMaintenanceId);
                         maintenanceLangModel.setCreationDate(strCreationDate);
                         maintenanceLangModel.setMonth(strMonth);
                         maintenanceLangModel.setMaintenanceAmount(strMaintenanceAmount);

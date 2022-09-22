@@ -59,7 +59,7 @@ public class MaintenanceListAdapter extends BaseAdapter {
 
         TextView tvData=view.findViewById(R.id.tv_data);
 
-        tvData.setText(maintenanceLangModelArrayList.get(position).getHouse()+" "+ maintenanceLangModelArrayList.get(position).getCreationDate()
+        tvData.setText(maintenanceLangModelArrayList.get(position).get_id()+" "+maintenanceLangModelArrayList.get(position).getHouse()+" "+ maintenanceLangModelArrayList.get(position).getCreationDate()
         +" "+ maintenanceLangModelArrayList.get(position).getMonth()+" "+ maintenanceLangModelArrayList.get(position).getMaintenanceAmount()+" "
                 + maintenanceLangModelArrayList.get(position).getMaintenancePaid()+" "+ maintenanceLangModelArrayList.get(position).getPaymentDate()+
                 maintenanceLangModelArrayList.get(position).getLastDate()+ maintenanceLangModelArrayList.get(position).getPenalty());
@@ -79,13 +79,14 @@ public class MaintenanceListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MaintenanceUpdateActivity.class);
-                intent.putExtra("MAINTENANCE_ID", maintenanceLangModelArrayList.get(position).get_id());
+                intent.putExtra("MAINTENANCE_ID", maintenanceLangModelArrayList.get(position).get_id().trim());
+                String id=maintenanceLangModelArrayList.get(position).get_id();
+                Log.e("id in edit: ",id);
                 intent.putExtra("MAINTENANCE_AMOUNT",maintenanceLangModelArrayList.get(position).getMaintenanceAmount());
                 intent.putExtra("PENALTY", maintenanceLangModelArrayList.get(position).getPenalty());
                 intent.putExtra("CREATION_DATE",maintenanceLangModelArrayList.get(position).getCreationDate());
                 intent.putExtra("PAYMENT_DATE",maintenanceLangModelArrayList.get(position).getPaymentDate());
                 intent.putExtra("LAST_DATE",maintenanceLangModelArrayList.get(position).getLastDate());
-
 
 
                 context.startActivity(intent);
@@ -97,7 +98,7 @@ public class MaintenanceListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String id = maintenanceLangModelArrayList.get(position).get_id();
-                Log.e("id: ",""+id);
+                Log.e("id in delete: ",""+id);
                 deleteAPI(id);
             }
         });
@@ -105,6 +106,11 @@ public class MaintenanceListAdapter extends BaseAdapter {
         tvData.setText(maintenanceLangModelArrayList.get(position).getMaintenanceAmount()+" "+maintenanceLangModelArrayList.get(position).getPenalty()+" "
                 +maintenanceLangModelArrayList.get(position).getCreationDate()+" "+maintenanceLangModelArrayList.get(position).getPaymentDate()+
                 " "+maintenanceLangModelArrayList.get(position).getLastDate());
+
+
+
+
+
 
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override

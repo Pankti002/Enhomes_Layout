@@ -55,13 +55,78 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
     private int year;
     private String id;
 
-    /* 
-*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
+
+        Intent i = getIntent();
+        String maintenanceId = i.getStringExtra("MAINTENANCE_ID");
+
+        edtHouseId=findViewById(R.id.et_houseId);
+        edtMaintenanceAmount=findViewById(R.id.et_amt);
+        edtPenalty=findViewById(R.id.et_penalty);
+        tvDisDate=findViewById(R.id.tv_create);
+        tvPayDate=findViewById(R.id.tv_payDate);
+        tvLastDate=findViewById(R.id.tv_lastDate);
+
+        //radio Button
+        radioGroup=findViewById(R.id.radio_grp);
+
+        //Date :- creationDate,paymentDate,lastDate
+        btnDate=findViewById(R.id.btn_date);
+        btnPayDate=findViewById(R.id.btn_payDate);
+        btnLastDate=findViewById(R.id.btn_lastDate);
+
+        Calendar calendar = Calendar.getInstance();
+        date=calendar.get(Calendar.DAY_OF_MONTH);
+        month=calendar.get(Calendar.MONTH);
+        year=calendar.get(Calendar.YEAR);
+
+        btnMaintenance=findViewById(R.id.btn_maintenance);
+
+        //    Log.e("MAINTENANCE_ID", String.valueOf(maintenanceId));
+        String strMaintenanceAmount=i.getStringExtra("MAINTENANCE_AMOUNT");
+        String strPenalty=i.getStringExtra("PENALTY");
+        String strCreationDate=i.getStringExtra("CREATION_DATE");
+        String strPaymentDate=i.getStringExtra("PAYMENT_DATE");
+        String strLastDate=i.getStringExtra("LAST_DATE");
+
+        //set text
+        MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
+        edtMaintenanceAmount.setText(strMaintenanceAmount);
+        edtPenalty.setText(strPenalty);
+        tvDisDate.setText(strCreationDate);
+        tvPayDate.setText(strPaymentDate);
+        tvLastDate.setText(strLastDate);
+
+        //normal code
+        btnMaintenance.setText("Update Maintenance");
+
+        btnMaintenance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strHouseId=edtHouseId.getText().toString();
+                String strMaintenanceAmount=edtMaintenanceAmount.getText().toString();
+                String strPenalty=edtPenalty.getText().toString();
+                String strCreateDate=tvDisDate.getText().toString();
+                String strPaymentDate=tvPayDate.getText().toString();
+                String strLastDate=tvLastDate.getText().toString();
+                int id= radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = findViewById(id);
+
+                Log.e("Create: ",strCreateDate);
+                Log.e("Payment: ",strPaymentDate);
+                Log.e("Last: ",strLastDate);
+
+                String strRadioButton=radioButton.getText().toString();
+                apiCall(maintenanceId,strHouseId,strMaintenanceMonth,strPenalty,strCreateDate,strPaymentDate,strLastDate,strRadioButton,strMaintenanceAmount);
+
+            }
+        });
+
         //Spinner for Months
         spinnerMonth=findViewById(R.id.spinner_month);
 
@@ -92,37 +157,7 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
             }
         });
 
-
-        //radio Button
-        radioGroup=findViewById(R.id.radio_grp);
-
-
-
-
-        //Date :- creationDate,paymentDate,lastDate
-        tvDisDate=findViewById(R.id.tv_create);
-        tvPayDate=findViewById(R.id.tv_payDate);
-        tvLastDate=findViewById(R.id.tv_lastDate);
-
-        btnDate=findViewById(R.id.btn_date);
-        btnPayDate=findViewById(R.id.btn_payDate);
-        btnLastDate=findViewById(R.id.btn_lastDate);
-
-        Calendar calendar = Calendar.getInstance();
-        date=calendar.get(Calendar.DAY_OF_MONTH);
-        month=calendar.get(Calendar.MONTH);
-        year=calendar.get(Calendar.YEAR);
-
-
-        Intent i = getIntent();
-         id = i.getStringExtra("MAINTENANCE_ID");
-        //    Log.e("MAINTENANCE_ID", String.valueOf(maintenanceId));
-        String strMaintenanceAmount=i.getStringExtra("MAINTENANCE_AMOUNT");
-        String strPenalty=i.getStringExtra("PENALTY");
-        String strCreationDate=i.getStringExtra("CREATION_DATE");
-        String strPaymentDate=i.getStringExtra("PAYMENT_DATE");
-        String strLastDate=i.getStringExtra("LAST_DATE");
-
+        //date
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,39 +224,9 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //Normal code
-        edtHouseId=findViewById(R.id.et_houseId);
-        edtMaintenanceAmount=findViewById(R.id.et_amt);
-        edtPenalty=findViewById(R.id.et_penalty);
-        btnMaintenance=findViewById(R.id.btn_maintenance);
-
-        btnMaintenance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String strHouseId=edtHouseId.getText().toString();
-                String strMaintenanceAmount=edtMaintenanceAmount.getText().toString();
-                String strPenalty=edtPenalty.getText().toString();
-                String strCreateDate=tvDisDate.getText().toString();
-                String strPaymentDate=tvPayDate.getText().toString();
-                String strLastDate=tvLastDate.getText().toString();
-                int id= radioGroup.getCheckedRadioButtonId();
-                RadioButton radioButton = findViewById(id);
-
-                Log.e("Create: ",strCreateDate);
-                Log.e("Payment: ",strPaymentDate);
-                Log.e("Last: ",strLastDate);
-
-                String strRadioButton=radioButton.getText().toString();
-                apiCall(strHouseId,strMaintenanceMonth,strPenalty,strCreateDate,strPaymentDate,strLastDate,strRadioButton,strMaintenanceAmount);
-
-            }
-        });
-
     }
 
-    private void apiCall( String strHouseId, String strMaintenanceMonth, String strPenalty, String strCreateDate, String strPaymentDate, String strLastDate, String strRadioButton, String strMaintenanceAmount) {
+    private void apiCall(String id, String strHouseId, String strMaintenanceMonth, String strPenalty, String strCreateDate, String strPaymentDate, String strLastDate, String strRadioButton, String strMaintenanceAmount) {
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, util.MAINTENANCE_URL, new Response.Listener<String>() {
             @Override
 

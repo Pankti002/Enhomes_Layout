@@ -33,7 +33,7 @@
             android:name=".RoleDisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".MaintenanceDisplayActivity"
+            android:name=".MaintenanceActivity"
             android:exported="false" />
         <activity
             android:name=".UserActivity"
@@ -48,7 +48,7 @@
             android:name=".PlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".MaintenanceActivity"
+            android:name=".MaintenanceDisplayActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
