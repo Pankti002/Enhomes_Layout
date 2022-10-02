@@ -27,15 +27,15 @@ import utils.util;
 public class MaintenanceDisplayActivity extends AppCompatActivity {
     ListView listview;
     FloatingActionButton btnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance_display);
-
         listview = findViewById(R.id.ls_maintenance_listview);
 
         //Update button
-        btnAdd=findViewById(R.id.btn_add);
+        btnAdd = findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,28 +49,32 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
     }
 
     private void MaintenanceApi() {
-        ArrayList<MaintenanceLangModel> arrayList=new ArrayList<MaintenanceLangModel>();
+        ArrayList<MaintenanceLangModel> arrayList = new ArrayList<MaintenanceLangModel>();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, util.MAINTENANCE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("TAG", "onResponse:"+response );
                 try {
-                    JSONObject jsonObject=new JSONObject(response);
+                    JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        //JSONObject jsonObject2 = jsonObject1.getJSONObject("house");
+                        JSONObject house = jsonObject1.getJSONObject("house");
+                        String strHouseId = house.getString("_id");
                         String strMaintenanceId = jsonObject1.getString("_id");
-                        String strCreationDate=jsonObject1.getString("creationDate");
-                        String strMonth=jsonObject1.getString("month");
-                        String strMaintenanceAmount=jsonObject1.getString("maintenanceAmount");
-                        String strPaid=jsonObject1.getString("maintenancePaid");
-                        String strPayDate=jsonObject1.getString("paymentDate");
-                        String strLastDate=jsonObject1.getString("lastDate");
-                        String strPenalty=jsonObject1.getString("penalty");
+                        String strCreationDate = jsonObject1.getString("creationDate");
+                        String strMonth = jsonObject1.getString("month");
+                        String strPenalty = jsonObject1.getString("penalty");
+                        String strMaintenanceAmount = jsonObject1.getString("maintenanceAmount");
+                        String strPaid = jsonObject1.getString("maintenancePaid");
+                        String strPayDate = jsonObject1.getString("paymentDate");
+                        String strLastDate = jsonObject1.getString("lastDate");
 
-                         MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
+
+                        MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
                         maintenanceLangModel.set_id(strMaintenanceId);
+                        maintenanceLangModel.setHouse(strHouseId);
                         maintenanceLangModel.setCreationDate(strCreationDate);
                         maintenanceLangModel.setMonth(strMonth);
                         maintenanceLangModel.setMaintenanceAmount(strMaintenanceAmount);
@@ -78,12 +82,12 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                         maintenanceLangModel.setPaymentDate(strPayDate);
                         maintenanceLangModel.setLastDate(strLastDate);
                         maintenanceLangModel.setPenalty(strPenalty);
-
-
                         arrayList.add(maintenanceLangModel);
+
                     }
                     MaintenanceListAdapter maintenanceListAdapter = new MaintenanceListAdapter(MaintenanceDisplayActivity.this, arrayList);
                     listview.setAdapter(maintenanceListAdapter);
+                    maintenanceListAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

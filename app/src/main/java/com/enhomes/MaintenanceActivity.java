@@ -38,14 +38,15 @@ import utils.VolleySingleton;
 import utils.util;
 
 public class MaintenanceActivity extends AppCompatActivity {
+//62c58b4808a597319d4b64cc
     EditText edtHouseId, edtMaintenanceAmount, edtPenalty;
     Button btnMaintenance;
     String strMaintenanceMonth;
 
     RadioGroup radioGroup;
     Spinner spinnerMonth;
-    String strMonths[]={"Select a Month","January","February","March","April","May","June","July","August","September",
-            "October","November","December"};
+    String strMonths[] = {"Select a Month", "January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "October", "November", "December"};
 
     TextView tvDisDate, tvPayDate, tvLastDate;
     ImageButton btnDate, btnPayDate, btnLastDate;
@@ -58,59 +59,56 @@ public class MaintenanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
 
-
-        edtHouseId=findViewById(R.id.et_houseId);
-        edtMaintenanceAmount=findViewById(R.id.et_amt);
-        edtPenalty=findViewById(R.id.et_penalty);
-        btnMaintenance=findViewById(R.id.btn_maintenance);
+        edtHouseId = findViewById(R.id.et_houseId);
+        edtMaintenanceAmount = findViewById(R.id.et_amt);
+        edtPenalty = findViewById(R.id.et_penalty);
+        btnMaintenance = findViewById(R.id.btn_maintenance);
 
         //spinner variable
-        spinnerMonth=findViewById(R.id.spinner_month);
+        spinnerMonth = findViewById(R.id.spinner_month);
 
         //radio button
-        radioGroup=findViewById(R.id.radio_grp);
+        radioGroup = findViewById(R.id.radio_grp);
 
         //date variables
-        tvDisDate=findViewById(R.id.tv_create);
-        tvPayDate=findViewById(R.id.tv_payDate);
-        tvLastDate=findViewById(R.id.tv_lastDate);
+        tvDisDate = findViewById(R.id.tv_create);
+        tvPayDate = findViewById(R.id.tv_payDate);
+        tvLastDate = findViewById(R.id.tv_lastDate);
 
-        btnDate=findViewById(R.id.btn_date);
-        btnPayDate=findViewById(R.id.btn_payDate);
-        btnLastDate=findViewById(R.id.btn_lastDate);
+        btnDate = findViewById(R.id.btn_date);
+        btnPayDate = findViewById(R.id.btn_payDate);
+        btnLastDate = findViewById(R.id.btn_lastDate);
 
         Calendar calendar = Calendar.getInstance();
-        date=calendar.get(Calendar.DAY_OF_MONTH);
-        month=calendar.get(Calendar.MONTH);
-        year=calendar.get(Calendar.YEAR);
-
+        date = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
 
         //Normal code
         btnMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String strHouseId=edtHouseId.getText().toString();
-                String strMaintenanceAmount=edtMaintenanceAmount.getText().toString();
-                String strPenalty=edtPenalty.getText().toString();
-                String strCreateDate=tvDisDate.getText().toString();
-                String strPaymentDate=tvPayDate.getText().toString();
-                String strLastDate=tvLastDate.getText().toString();
-                int id= radioGroup.getCheckedRadioButtonId();
+                String strMaintenanceAmount = edtMaintenanceAmount.getText().toString();
+                String strPenalty = edtPenalty.getText().toString();
+                String strCreateDate = tvDisDate.getText().toString();
+                String strPaymentDate = tvPayDate.getText().toString();
+                String strLastDate = tvLastDate.getText().toString();
+                int id = radioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(id);
 
-                Log.e("Create: ",strCreateDate);
-                Log.e("Payment: ",strPaymentDate);
-                Log.e("Last: ",strLastDate);
+                Log.e("Create: ", strCreateDate);
+                Log.e("Payment: ", strPaymentDate);
+                Log.e("Last: ", strLastDate);
 
-                String strRadioButton=radioButton.getText().toString();
-                apiCall("strHouseId",strMaintenanceMonth,strPenalty,strCreateDate,strPaymentDate,strLastDate,strRadioButton,strMaintenanceAmount);
-
+                String strRadioButton = radioButton.getText().toString();
+                apiCall("strHouseId",strCreateDate, strMaintenanceMonth,strMaintenanceAmount,strRadioButton,strPaymentDate, strLastDate,strPenalty);
             }
         });
 
         //Spinner for Months
         ArrayAdapter<String> arrayAdapter = new
-                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,strMonths){
+                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strMonths) {
                     @Override
                     public View getDropDownView(int position, @Nullable View convertView,
                                                 @NonNull ViewGroup parent) {
@@ -127,7 +125,7 @@ public class MaintenanceActivity extends AppCompatActivity {
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strMaintenanceMonth=strMonths[position];
+                strMaintenanceMonth = strMonths[position];
             }
 
             @Override
@@ -157,7 +155,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
                         tvDisDate.setText(strDate);
                     }
-                },date,month,year);
+                },year, month,date);
                 datePickerDialog.show();
             }
         });
@@ -171,6 +169,10 @@ public class MaintenanceActivity extends AppCompatActivity {
                         CharSequence strDate = null;
                         Time chosenDate = new Time();
                         chosenDate.set(dayOfMonth, month, year);
+                        Log.e("year: ", String.valueOf(year));
+                        Log.e("month: ", String.valueOf(month));
+                        Log.e("day: ", String.valueOf(dayOfMonth));
+
                         long dtDob = chosenDate.toMillis(true);
 
                         strDate = DateFormat.format("yyyy/MM/dd", dtDob);
@@ -178,7 +180,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                         tvPayDate.setText(strDate);
 
                     }
-                },date,month,year);
+                },year, month,date);
                 datePickerDialog.show();
             }
         });
@@ -192,6 +194,10 @@ public class MaintenanceActivity extends AppCompatActivity {
                         CharSequence strDate = null;
                         Time chosenDate = new Time();
                         chosenDate.set(dayOfMonth, month, year);
+                        Log.e("year: ", String.valueOf(year));
+                        Log.e("month: ", String.valueOf(month));
+                        Log.e("day: ", String.valueOf(dayOfMonth));
+
                         long dtDob = chosenDate.toMillis(true);
 
                         strDate = DateFormat.format("yyyy/MM/dd", dtDob);
@@ -199,7 +205,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                         tvLastDate.setText(strDate);
 
                     }
-                },date,month,year);
+                },year, month,date);
                 datePickerDialog.show();
             }
         });
@@ -207,12 +213,12 @@ public class MaintenanceActivity extends AppCompatActivity {
     }
 
     //apicall method
-    private void apiCall( String strHouseId, String strMaintenanceMonth, String strPenalty, String strCreateDate, String strPaymentDate, String strLastDate, String strRadioButton, String strMaintenanceAmount) {
+    private void apiCall(String strHouseId, String strCreateDate,String strMaintenanceMonth,String strMaintenanceAmount, String strRadioButton,String strPaymentDate, String strLastDate,String strPenalty) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, util.MAINTENANCE_URL, new Response.Listener<String>() {
             @Override
 
             public void onResponse(String response) {
-                Log.e("api calling done",response);
+                Log.e("api calling done", response);
                 Intent intent = new Intent(MaintenanceActivity.this, MaintenanceDisplayActivity.class);
                 startActivity(intent);
             }
@@ -221,7 +227,7 @@ public class MaintenanceActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> hashMap = new HashMap<>();

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,29 +37,33 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String strRoleName = edtRoleName.getText().toString();
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, util.ROLE_URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent = new Intent(RoleActivity.this, RoleDisplayActivity.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> hashMap = new HashMap<>();
-                        hashMap.put("roleName", strRoleName);
-
-                        return hashMap;
-                    }
-                };
-                VolleySingleton.getInstance(RoleActivity.this).addToRequestQueue(stringRequest);
+                Log.e("roleName : ",strRoleName);
+                roleApi(strRoleName);
             }
         });
+    }
+
+    private void roleApi(String strRoleName) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, util.ROLE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("api calling done: ",response);
+                Intent intent = new Intent(RoleActivity.this, RoleDisplayActivity.class);
+                startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> hashMap = new HashMap<>();
+                hashMap.put("roleName", strRoleName);
+                return hashMap;
+            }
+        };
+        VolleySingleton.getInstance(RoleActivity.this).addToRequestQueue(stringRequest);
     }
 }

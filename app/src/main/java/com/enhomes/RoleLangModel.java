@@ -1,7 +1,15 @@
 package com.enhomes;
 
 public class RoleLangModel {
-    String roleName;
+    String _id, roleName;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public String getRoleName() {
         return roleName;
