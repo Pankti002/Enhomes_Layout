@@ -15,9 +15,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Enhomes"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".DeleteRoleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RoleUpdateActivity"
+            android:exported="false" />
         <activity
             android:name=".StaffUpdateActivity"
             android:exported="false" />
@@ -41,9 +47,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RoleActivity"
             android:exported="false" />
         <activity
             android:name=".PlaceActivity"
