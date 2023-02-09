@@ -1,6 +1,8 @@
 package com.enhomes;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,9 +30,10 @@ import java.util.Map;
 public class RoleListAdapter extends BaseAdapter {
     Context context;
     ArrayList<RoleLangModel> roleLangModelArrayList;
+
     public RoleListAdapter(Context context, ArrayList<RoleLangModel> langModelArrayList) {
-        this.context=context;
-        this.roleLangModelArrayList=langModelArrayList;
+        this.context = context;
+        this.roleLangModelArrayList = langModelArrayList;
     }
 
     @Override
@@ -49,12 +54,12 @@ public class RoleListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
-        LayoutInflater layoutInflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view=layoutInflater.inflate(R.layout.raw_list,null);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = layoutInflater.inflate(R.layout.raw_list, null);
 
-        TextView tvData=view.findViewById(R.id.tv_data);
+        TextView tvData = view.findViewById(R.id.tv_data);
 
-        tvData.setText(roleLangModelArrayList.get(position).get_id()+" "+roleLangModelArrayList.get(position).getRoleName());
+        tvData.setText("Role Id: "+roleLangModelArrayList.get(position).get_id() + "\n Role Name: " + roleLangModelArrayList.get(position).getRoleName());
 
         ImageView imgEdit = view.findViewById(R.id.img_edit);
         ImageView imgDelete = view.findViewById(R.id.img_delete);
@@ -76,48 +81,68 @@ public class RoleListAdapter extends BaseAdapter {
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String id = roleLangModelArrayList.get(position).get_id();
-//                Log.e("id in delete: ", id);
+                String id = roleLangModelArrayList.get(position).get_id();
+                Log.e("id in delete: ", id);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you Sure you want to Delete ?");
+                builder.setTitle("Alert !");
+                builder.setCancelable(false);
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteAPI(id);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(context, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+
+
+                //
+//                Intent intent = new Intent(context, RoleDisplayActivity.class);
+//                context.startActivity(intent);
+
 //                deleteAPI(id);
 
-                String id = roleLangModelArrayList.get(position).get_id();
-                Log.e("id in Delete: ", id);
 
-                Intent intent = new Intent(context, DeleteRoleActivity.class);
-                intent.putExtra("ROLE_ID", id);
-                intent.putExtra("ROLE_NAME", roleLangModelArrayList.get(position).getRoleName());
-                context.startActivity(intent);
+
             }
         });
         return view;
     }
-
     private void deleteAPI(String id) {
-        Log.e("id in deleteAPI: ", id);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, util.ROLE_URL,
-                new Response.Listener<String>() {
+        Log.e("TAG****", "deleteAPI  "+id);
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, util.ROLE_URL, new Response.Listener<String>() {
+            @Override
 
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e("api calling done", response);
-
-                    }
-                }, new Response.ErrorListener() {
+            public void onResponse(String response) {
+                Log.e("api calling done", response);
+                Intent intent = new Intent(context, RoleDisplayActivity.class);
+                context.startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("Error: ", String.valueOf(error));
             }
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("Map: ","in Map");
+                Log.e("params: ", String.valueOf(getParams()));
                 Map<String, String> hashMap = new HashMap<>();
-                Log.e("id in Map: ",id);
                 hashMap.put("roleId", id);
                 return hashMap;
+
+
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
-
     }
 }

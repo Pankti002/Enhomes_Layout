@@ -12,6 +12,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.enhomes.StaffActivity;
+import com.enhomes.R;
+import com.enhomes.StaffListAdapter;
+import com.enhomes.StaffLangModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +44,6 @@ public class StaffDisplayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         StaffApi();
     }
 
@@ -62,9 +65,6 @@ public class StaffDisplayActivity extends AppCompatActivity {
                         String strExitTime=jsonObject1.getString("exitTime");
                         String strContactNo=jsonObject1.getString("contactNo");
                         String strAddress = jsonObject1.getString("address");
-                        String strEmail = jsonObject1.getString("email");
-                        String strPassword=jsonObject1.getString("password");
-                        String strIsAllowed=jsonObject1.getString("isAllowed");
                         String strAgencyName=jsonObject1.getString("agencyName");
                         String strAgencyContactNo=jsonObject1.getString("agencyContactNumber");
 
@@ -76,9 +76,6 @@ public class StaffDisplayActivity extends AppCompatActivity {
                         staffLangModel.setExitTime(strExitTime);
                         staffLangModel.setContactNo(strContactNo);
                         staffLangModel.setAddress(strAddress);
-                        staffLangModel.setEmail(strEmail);
-                        staffLangModel.setPassword(strPassword);
-                        staffLangModel.setIsAllowed(strIsAllowed);
                         staffLangModel.setAgencyName(strAgencyName);
                         staffLangModel.setAgencyContactNumber(strAgencyContactNo);
 

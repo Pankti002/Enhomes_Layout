@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,10 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +37,7 @@ import utils.util;
 
 public class StaffActivity extends AppCompatActivity {
 
-    EditText edtStaffName, edtContact, edtAddress, edtEmail, edtPassword,
-    edtAgencyName, edtAgencyContact;
-
+    EditText edtStaffName, edtContact, edtAddress,edtAgencyName, edtAgencyContact;
     EditText edtEntryTime, edtExitTime;
 
     Button btnStaff;
@@ -44,10 +46,8 @@ public class StaffActivity extends AppCompatActivity {
     String strTypes[]={"Select a Type","SecurityGuard","Sweeper","PumpOperator","Gardener"};
     String strStaff;
 
-    RadioGroup radioGroup;
-
-//    ImageButton btnEntry, btnExit;
-//    TextView tvEntry, tvExit;
+    ImageButton btnEntry, btnExit;
+    TextView tvEntry, tvExit;
     private int hour;
     private int minute;
 
@@ -69,6 +69,7 @@ public class StaffActivity extends AppCompatActivity {
                         tvData1.setTextColor(Color.WHITE);
                         tvData1.setTextSize(20);
                         return tvData1;
+
                     }
 
                 };
@@ -86,61 +87,53 @@ public class StaffActivity extends AppCompatActivity {
         });
 
 
-        //time
-//        tvEntry=findViewById(R.id.tv_entry);
-//        tvExit=findViewById(R.id.tv_exit);
-//        btnEntry=findViewById(R.id.btn_entry);
-//        btnExit=findViewById(R.id.btn_exit);
-//
-//
-//        Calendar calendar =Calendar.getInstance();
-//        hour=calendar.get(Calendar.HOUR_OF_DAY);
-//        minute=calendar.get(Calendar.MINUTE);
-//
-//        //entry time
-//        btnEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                        tvEntry.setText(hourOfDay+":"+minute);
-//                    }
-//                },hour, minute, true);
-//
-//                timePickerDialog.show();
-//            }
-//        });
-//
-//        //exit time
-//        btnExit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//
-//                        tvExit.setText(hourOfDay+":"+minute);
-//                    }
-//                },hour, minute, true);
-//
-//                timePickerDialog.show();
-//            }
-//        });
+//        time
+        tvEntry=findViewById(R.id.tv_entry);
+        tvExit=findViewById(R.id.tv_exit);
+        btnEntry=findViewById(R.id.btn_entry);
+        btnExit=findViewById(R.id.btn_exit);
 
 
-        //radio Button
-        radioGroup=findViewById(R.id.radio_staff);
+        Calendar calendar =Calendar.getInstance();
+        hour=calendar.get(Calendar.HOUR_OF_DAY);
+        minute=calendar.get(Calendar.MINUTE);
 
+        //entry time
+        btnEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tvEntry.setText(hourOfDay+":"+minute);
+                    }
+                },hour, minute, true);
 
+                timePickerDialog.show();
+            }
+        });
+
+        //exit time
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        tvExit.setText(hourOfDay+":"+minute);
+                    }
+                },hour, minute, true);
+
+                timePickerDialog.show();
+            }
+        });
 
 
         //normal code
         edtStaffName=findViewById(R.id.et_name);
         edtContact=findViewById(R.id.et_contact);
         edtAddress=findViewById(R.id.et_add);
-        edtEmail =findViewById(R.id.et_email);
-        edtPassword=findViewById(R.id.et_password);
         edtAgencyName=findViewById(R.id.et_agencyName);
         edtAgencyContact=findViewById(R.id.et_agencyContact);
 
@@ -155,29 +148,20 @@ public class StaffActivity extends AppCompatActivity {
                 String strStaffName=edtStaffName.getText().toString();
                 String strContact=edtContact.getText().toString();
                 String strAddress=edtAddress.getText().toString();
-                String strEmail= edtEmail.getText().toString();
-                String strPassword=edtPassword.getText().toString();
                 String strAgencyName=edtAgencyName.getText().toString();
                 String strAgencyContact=edtAgencyContact.getText().toString();
                 String strEntryTime=edtEntryTime.getText().toString();
                 String strExitTime=edtExitTime.getText().toString();
 
-                int id= radioGroup.getCheckedRadioButtonId();
-                RadioButton radioButton = findViewById(id);
-                String strRadioStaff=radioButton.getText().toString();
-
-
-                Log.e("Entry Time: ", strEntryTime);
-
-
-                apicall(strStaffName,strContact,strAddress,strEmail,strPassword,strAgencyName,strAgencyContact,strEntryTime,strExitTime,strRadioStaff, strStaff);
+                Log.e("Data: ",strStaffName+" "+strContact+" "+strAddress+" "+strAgencyName+" "+strAgencyContact+" "+strEntryTime+" "+strExitTime+" "+strStaff);
+                apicall(strStaffName,strStaff,strEntryTime,strExitTime,strContact,strAddress,strAgencyName,strAgencyContact);
 
             }
         });
 
         }
 
-    private void apicall(String strStaffName, String strContact, String strAddress, String strEmail, String strPassword, String strAgencyName, String strAgencyContact, String strEntryTime, String strExitTime, String strRadioStaff, String strStaff) {
+    private void apicall(String strStaffName,String strStaff,String strEntryTime, String strExitTime,  String strContact, String strAddress, String strAgencyName, String strAgencyContact) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, util.STAFF_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -188,7 +172,7 @@ public class StaffActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("Error", String.valueOf(error));
             }
         }){
             @Override
@@ -200,9 +184,6 @@ public class StaffActivity extends AppCompatActivity {
                 hashMap.put("exitTime", strExitTime);
                 hashMap.put("contactNo", strContact);
                 hashMap.put("address", strAddress);
-                hashMap.put("email", strEmail);
-                hashMap.put("password", strPassword);
-                hashMap.put("isAllowed",strRadioStaff);
                 hashMap.put("agencyName",strAgencyName);
                 hashMap.put("agencyContactNumber",strAgencyContact);
                 return hashMap;

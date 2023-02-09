@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MaintenanceActivity"
@@ -49,27 +46,16 @@
 
         />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-<!--       -->
 
-<!--        <ImageButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/btn_entry"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#FFF0FF"-->
-<!--            android:src="@drawable/img_time"-->
-<!--            android:padding="5dp"-->
-<!--            />-->
-
-<!--    </LinearLayout>-->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:id="@+id/tv_entry"
         android:hint="Entry Time"
         android:textSize="20sp"
@@ -79,28 +65,27 @@
         android:singleLine="true"
         android:imeOptions="actionNext"
         />
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_entry"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_time"
+            android:padding="5dp"
+            />
 
-<!--       -->
-
-<!--        <ImageButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/btn_exit"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#FFF0FF"-->
-<!--            android:src="@drawable/img_time"-->
-<!--            android:padding="5dp"-->
-<!--            />-->
-
-<!--    </LinearLayout>-->
-
-    <EditText
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:id="@+id/tv_exit"
         android:hint="Exit Time"
         android:textSize="20sp"
@@ -111,6 +96,17 @@
         android:imeOptions="actionNext"
 
         />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_exit"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_time"
+            android:padding="5dp"
+            />
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -140,71 +136,6 @@
         android:imeOptions="actionNext"
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_email"
-        android:hint="Eamil"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:inputType="textEmailAddress"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_password"
-        android:hint="Password"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_allowed"
-        android:hint="isAllowed"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/radio_staff"
-            android:orientation="horizontal">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/allowed_yes"
-            android:layout_marginTop="5dp"
-            android:text="true"
-            android:textSize="20sp"
-            android:textColor="#000"
-            />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/allowed_no"
-            android:layout_marginTop="5dp"
-            android:text="false"
-            android:textSize="20sp"
-            android:textColor="#000"
-            />
-        </RadioGroup>
 
     <EditText
         android:layout_width="match_parent"
@@ -249,5 +180,3 @@
         />
 
 </LinearLayout>
-
-</ScrollView>

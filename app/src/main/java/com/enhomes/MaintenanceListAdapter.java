@@ -89,42 +89,23 @@ public class MaintenanceListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 String id = maintenanceLangModelArrayList.get(position).get_id();
                 Log.e("id in delete: ", "" + id);
-                deleteAPI(id);
+
+                Intent intent = new Intent(context, MaintenanceUpdateActivity.class);
+                intent.putExtra("MAINTENANCE_ID", id);
+                intent.putExtra("MAINTENANCE_HOUSE", maintenanceLangModelArrayList.get(position).getHouse());
+                intent.putExtra("MAINTENANCE_AMOUNT", maintenanceLangModelArrayList.get(position).getMaintenanceAmount());
+                intent.putExtra("PENALTY", maintenanceLangModelArrayList.get(position).getPenalty());
+                intent.putExtra("CREATION_DATE", maintenanceLangModelArrayList.get(position).getCreationDate());
+                intent.putExtra("PAYMENT_DATE", maintenanceLangModelArrayList.get(position).getPaymentDate());
+                intent.putExtra("LAST_DATE", maintenanceLangModelArrayList.get(position).getLastDate());
+
+                context.startActivity(intent);
+
             }
         });
 
         return view;
     }
 
-    private void deleteAPI(String id) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, util.MAINTENANCE_URL,
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e("api calling done", response);
-                        maintenanceLangModelArrayList.remove(id);
-                        notifyDataSetChanged();
-                        // maintenanceLangModelArrayList.remove(i);
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> hashMap = new HashMap<>();
-                hashMap.put("maintenanceId", id);
-                return hashMap;
-            }
-        };
-        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
-
-    }
 }
 
