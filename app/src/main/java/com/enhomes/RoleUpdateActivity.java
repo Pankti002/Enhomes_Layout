@@ -41,16 +41,16 @@ public class RoleUpdateActivity extends AppCompatActivity {
 
         RoleLangModel roleLangModel = new RoleLangModel();
         edtRoleName.setText(strRoleName);
-
         btnRole.setText("Update Role");
         btnRole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String strRoleName=edtRoleName.getText().toString();
-
                 RoleApi(strRoleId, strRoleName);
             }
         });
+
+
 
     }
 
