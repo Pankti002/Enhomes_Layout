@@ -59,7 +59,7 @@ public class StaffListAdapter extends BaseAdapter {
 
         TextView tvData=view.findViewById(R.id.tv_data);
 
-        tvData.setText(staffLangModelArrayList.get(position).getStaffMemberName()+" "+ staffLangModelArrayList.get(position).getType()+
+        tvData.setText(staffLangModelArrayList.get(position).get_id()+" "+staffLangModelArrayList.get(position).getStaffMemberName()+" "+ staffLangModelArrayList.get(position).getType()+
                 " "+ staffLangModelArrayList.get(position).getEntryTime()+" "+ staffLangModelArrayList.get(position).getExitTime()+" "+
                 staffLangModelArrayList.get(position).getContactNo()+" "+ staffLangModelArrayList.get(position).getAddress()+" "+
              staffLangModelArrayList.get(position).getAgencyName()+" "
@@ -73,20 +73,19 @@ public class StaffListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String id = staffLangModelArrayList.get(position).get_id();
-               Log.e("id in edit: ","id "+id);
-               Log.e("position: ", "id: "+staffLangModelArrayList.get(position).get_id());
+                 Log.e("id in edit: ","id "+id);
+//               Log.e("position: ", "id: "+staffLangModelArrayList.get(position).get_id());
 
                 Intent intent = new Intent(context, StaffUpdateActivity.class);
                 intent.putExtra("STAFF_ID", id);
                 intent.putExtra("STAFF_NAME",staffLangModelArrayList.get(position).getStaffMemberName());
+                intent.putExtra("TYPE",staffLangModelArrayList.get(position).getType());
                 intent.putExtra("ENTRY_TIME",staffLangModelArrayList.get(position).getEntryTime());
                 intent.putExtra("EXIT_TIME",staffLangModelArrayList.get(position).getExitTime());
                 intent.putExtra("CONTACT", staffLangModelArrayList.get(position).getContactNo());
                 intent.putExtra("ADDRESS",staffLangModelArrayList.get(position).getAddress());
                 intent.putExtra("AGENCY_NAME", staffLangModelArrayList.get(position).getAgencyName());
                 intent.putExtra("AGENCY_CONTACT",staffLangModelArrayList.get(position).getAgencyContactNumber());
-                intent.putExtra("TYPE",staffLangModelArrayList.get(position).getType());
-
                 context.startActivity(intent);
 
             }
@@ -95,6 +94,24 @@ public class StaffListAdapter extends BaseAdapter {
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String id = staffLangModelArrayList.get(position).get_id();
+                Log.e("id in edit: ", id);
+
+
+                Intent intent = new Intent(context, StaffUpdateActivity.class);
+                intent.putExtra("STAFF_ID", id);
+                intent.putExtra("STAFF_NAME",staffLangModelArrayList.get(position).getStaffMemberName());
+                intent.putExtra("TYPE",staffLangModelArrayList.get(position).getType());
+                intent.putExtra("ENTRY_TIME",staffLangModelArrayList.get(position).getEntryTime());
+                intent.putExtra("EXIT_TIME",staffLangModelArrayList.get(position).getExitTime());
+                intent.putExtra("CONTACT", staffLangModelArrayList.get(position).getContactNo());
+                intent.putExtra("ADDRESS",staffLangModelArrayList.get(position).getAddress());
+                intent.putExtra("AGENCY_NAME", staffLangModelArrayList.get(position).getAgencyName());
+                intent.putExtra("AGENCY_CONTACT",staffLangModelArrayList.get(position).getAgencyContactNumber());
+                context.startActivity(intent);
+
+
+                context.startActivity(intent);
 
             }
         });

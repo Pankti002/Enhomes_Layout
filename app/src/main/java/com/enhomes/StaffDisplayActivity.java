@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -53,12 +54,14 @@ public class StaffDisplayActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, util.STAFF_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("data: ",response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray =jsonObject.getJSONArray("data");
                     for (int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String strStaffId=jsonObject1.getString("_id");
                         String strStaffMemberName= jsonObject1.getString("staffMemberName");
                         String strType=jsonObject1.getString("type");
                         String strEntryTime=jsonObject1.getString("entryTime");
@@ -70,6 +73,7 @@ public class StaffDisplayActivity extends AppCompatActivity {
 
 
                         StaffLangModel staffLangModel = new StaffLangModel();
+                        staffLangModel.set_id(strStaffId);
                         staffLangModel.setStaffMemberName(strStaffMemberName);
                         staffLangModel.setType(strType);
                         staffLangModel.setEntryTime(strEntryTime);

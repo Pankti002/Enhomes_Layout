@@ -171,7 +171,22 @@
         android:id="@+id/btn_staff"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Add Satff"
+        android:text="Add Staff"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#B765A6"
+        android:textColor="#000"
+        android:textStyle="bold"
+        />
+
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_delStaff"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Delete Staff"
+        android:visibility="gone"
         android:textSize="20sp"
         android:padding="10dp"
         android:background="#B765A6"

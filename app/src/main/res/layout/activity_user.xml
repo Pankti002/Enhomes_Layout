@@ -16,29 +16,15 @@
     android:background="#FFF0FF">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_user"
-        android:text="User"
-        android:textSize="30sp"
-        android:textColor="#B765A6"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_houseId"
-        android:hint="HouseId"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        android:text="User"
+        android:textColor="#B765A6"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <EditText
         android:layout_width="match_parent"
@@ -79,24 +65,44 @@
         android:imeOptions="actionNext"
         />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_dob"
-        android:hint="Date of Birth"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_dob"
+            android:hint="Date Of Birth"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_Bdate"
+            android:layout_marginTop="10dp"
+            android:background="#FFF0FF"
+            android:src="@drawable/img_calendar"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_age"
         android:hint="Age"
+        android:inputType="number"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
@@ -105,10 +111,10 @@
         android:imeOptions="actionNext"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_gender"
+        android:id="@+id/tv_gender"
         android:hint="Gender"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
@@ -118,11 +124,39 @@
         android:imeOptions="actionNext"
         />
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_grp_Usr"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/female"
+            android:layout_marginTop="5dp"
+            android:text="Female"
+            android:textSize="20sp"
+            android:textColor="#000"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/male"
+            android:layout_marginTop="5dp"
+            android:text="Male"
+            android:textSize="20sp"
+            android:textColor="#000"
+            />
+
+    </RadioGroup>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_contactNo"
         android:hint="Contact No"
+        android:inputType="number"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
@@ -148,6 +182,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_password"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"

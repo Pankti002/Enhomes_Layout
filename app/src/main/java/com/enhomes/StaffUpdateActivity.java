@@ -5,15 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.android.volley.toolbox.StringRequest;
 
@@ -24,6 +30,8 @@ import com.android.volley.VolleyError;
 
 import utils.VolleySingleton;
 import utils.util;
+
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,16 +40,17 @@ public class StaffUpdateActivity extends AppCompatActivity {
     EditText edtStaffName, edtContact, edtAddress, edtAgencyName, edtAgencyContact;
     EditText edtEntryTime, edtExitTime;
 
-    Button btnStaff;
+    Button btnStaff,btnDelStaff;
 
     Spinner spinnerType;
     String strTypes[] = {"Select a Type", "SecurityGuard", "Sweeper", "PumpOperator", "Gardener"};
-    String strStaff;
+    
 
     ImageButton btnEntry, btnExit;
     TextView tvEntry, tvExit;
     private int hour;
     private int minute;
+    private String strStaff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +67,24 @@ public class StaffUpdateActivity extends AppCompatActivity {
         edtEntryTime = findViewById(R.id.tv_entry);
         edtExitTime = findViewById(R.id.tv_exit);
         btnStaff = findViewById(R.id.btn_staff);
+        btnDelStaff=findViewById(R.id.btn_delStaff);
+        spinnerType = findViewById(R.id.spinner_type);
+
+        btnDelStaff.setVisibility(View.VISIBLE);
+
+
 
         String staffId = i.getStringExtra("STAFF_ID");
-        String strStaffName = i.getStringExtra("STAFF_MEMBER_NAME");
+        String strStaffName = i.getStringExtra("STAFF_NAME");
         String strContact = i.getStringExtra("CONTACT");
         String strAddress = i.getStringExtra("ADDRESS");
         String strAgencyName = i.getStringExtra("AGENCY_NAME");
-        String strAgencyContact = i.getStringExtra("AGENCY_CONTACT_NUMBER");
+        String strAgencyContact = i.getStringExtra("AGENCY_CONTACT");
         String strEntryTime = i.getStringExtra("ENTRY_TIME");
         String strExitTime = i.getStringExtra("EXIT_TIME");
+//        String strType = i.getStringExtra("TYPE");
+
+//        Log.e("type: ",strType);
 
         Log.e("Data: ",staffId+" "+strStaffName+" "+strContact+" "+strAddress+" "+strEntryTime+" "+strExitTime+" "+strAgencyName+" "+strAgencyContact);
         StaffLangModel staffLangModel = new StaffLangModel();
@@ -77,6 +95,86 @@ public class StaffUpdateActivity extends AppCompatActivity {
         edtAgencyContact.setText(strAgencyContact);
         edtEntryTime.setText(strEntryTime);
         edtExitTime.setText(strExitTime);
+        
+
+//        time
+        tvEntry=findViewById(R.id.tv_entry);
+        tvExit=findViewById(R.id.tv_exit);
+        btnEntry=findViewById(R.id.btn_entry);
+        btnExit=findViewById(R.id.btn_exit);
+
+
+        Calendar calendar =Calendar.getInstance();
+        hour=calendar.get(Calendar.HOUR_OF_DAY);
+        minute=calendar.get(Calendar.MINUTE);
+
+        //entry time
+        btnEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffUpdateActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tvEntry.setText(hourOfDay+":"+minute);
+                    }
+                },hour, minute, true);
+
+                timePickerDialog.show();
+            }
+        });
+
+        //exit time
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(StaffUpdateActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        tvExit.setText(hourOfDay+":"+minute);
+                    }
+                },hour, minute, true);
+
+                timePickerDialog.show();
+            }
+        });
+
+        //spinner
+        ArrayAdapter<String> arrayAdapter = new
+                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strTypes) {
+                    @Override
+                    public View getDropDownView(int position, @Nullable View convertView,
+                                                @NonNull ViewGroup parent) {
+
+                        TextView tvData1 = (TextView) super.getDropDownView(position, convertView, parent);
+                        tvData1.setTextColor(Color.WHITE);
+                        tvData1.setTextSize(20);
+                        return tvData1;
+
+                    }
+
+                };
+        spinnerType.setAdapter(arrayAdapter);
+        Log.e("Selected Id: ",String.valueOf(spinnerType.getSelectedItemId()));
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                strStaff=strTypes[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        btnDelStaff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteAPI(staffId);
+            }
+        });
 
         btnStaff.setText("Update Staff");
         btnStaff.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +193,37 @@ public class StaffUpdateActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    private void deleteAPI(String staffId) {
+        Log.e("TAG****", "deleteAPI  "+staffId);
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, util.STAFF_URL, new Response.Listener<String>() {
+            @Override
+
+            public void onResponse(String response) {
+                Log.e("api calling done", response);
+                Intent intent = new Intent(StaffUpdateActivity.this, StaffDisplayActivity.class);
+                startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> hashMap = new HashMap<>();
+                hashMap.put("_id", staffId);
+                return hashMap;
+
+
+            }
+        };
+        VolleySingleton.getInstance(StaffUpdateActivity.this).addToRequestQueue(stringRequest);
+
 
 
     }
