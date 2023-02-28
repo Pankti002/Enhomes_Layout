@@ -1,8 +1,6 @@
 package com.enhomes;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,21 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import utils.util;
-import utils.VolleySingleton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RoleListAdapter extends BaseAdapter {
     Context context;
@@ -55,11 +40,11 @@ public class RoleListAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = layoutInflater.inflate(R.layout.raw_list, null);
+        view = layoutInflater.inflate(R.layout.role_table, null);
 
-        TextView tvData = view.findViewById(R.id.tv_data);
+        TextView tvData = view.findViewById(R.id.tv_data1);
 
-        tvData.setText("Role Id: "+roleLangModelArrayList.get(position).get_id() + "\n Role Name: " + roleLangModelArrayList.get(position).getRoleName());
+        tvData.setText(roleLangModelArrayList.get(position).getRoleName());
 
         ImageView imgEdit = view.findViewById(R.id.img_edit);
         ImageView imgDelete = view.findViewById(R.id.img_delete);

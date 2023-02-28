@@ -49,7 +49,7 @@
             android:name=".MaintenanceActivity"
             android:exported="false" />
         <activity
-            android:name=".StaffDisplayActivity"
+            android:name=".UserDisplayActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -58,7 +58,10 @@
             android:name=".PlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".UserDisplayActivity"
+            android:name=".UserUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StaffDisplayActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

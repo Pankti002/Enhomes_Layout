@@ -40,8 +40,9 @@ public class UserListAdapter extends BaseAdapter {
         LayoutInflater layoutInflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view=layoutInflater.inflate(R.layout.raw_list,null);
 
-        TextView tvData=view.findViewById(R.id.tv_data);
-        tvData.setText(userLangModelArrayList.get(position).get_id()+" "+userLangModelArrayList.get(position).getRoleId()+" "+
+
+        TextView tvData = view.findViewById(R.id.tv_data);
+        tvData.setText(userLangModelArrayList.get(position).getRoleId()+" "+userLangModelArrayList.get(position).get_id()+" "+
                 userLangModelArrayList.get(position).getFirstName()+" "+userLangModelArrayList.get(position).getLastName()+" "
                 +userLangModelArrayList.get(position).getDateOfBirth()+" "+userLangModelArrayList.get(position).getAge()+" "+
                 userLangModelArrayList.get(position).getGender()+" "+userLangModelArrayList.get(position).getContactNo()+
@@ -63,7 +64,7 @@ public class UserListAdapter extends BaseAdapter {
                 intent.putExtra("FIRST_NAME",userLangModelArrayList.get(position).getFirstName());
                 intent.putExtra("LAST_NAME",userLangModelArrayList.get(position).getLastName());
                 intent.putExtra("DATE_OF_BIRTH",userLangModelArrayList.get(position).getDateOfBirth());
-                intent.putExtra("Age",userLangModelArrayList.get(position).getAge());
+                intent.putExtra("AGE",userLangModelArrayList.get(position).getAge());
                 intent.putExtra("GENDER",userLangModelArrayList.get(position).getGender());
                 intent.putExtra("CONTACT_NO",userLangModelArrayList.get(position).getContactNo());
                 intent.putExtra("EMAIL",userLangModelArrayList.get(position).getEmail());

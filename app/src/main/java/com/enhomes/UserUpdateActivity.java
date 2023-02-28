@@ -72,25 +72,25 @@ public class UserUpdateActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
 
 
-     String userId=i.getStringExtra("USER_ID");
-     String strRoleId=i.getStringExtra("ROLE_ID");
-     String strFirstName=i.getStringExtra("FIRST_NAME");
-     String strLastName=i.getStringExtra("LAST_NAME");
-     String strDob=i.getStringExtra("DATE_OF_BIRTH");
-     String strAge=i.getStringExtra("AGE");
-     String strContactNo=i.getStringExtra("CONTACT_NO");
-     String strEmail=i.getStringExtra("EMAIL");
-     String strPassword=i.getStringExtra("PASSWORD");
+         String userId=i.getStringExtra("USER_ID");
+         String strRoleId=i.getStringExtra("ROLE_ID");
+         String strFirstName=i.getStringExtra("FIRST_NAME");
+         String strLastName=i.getStringExtra("LAST_NAME");
+         String strDob=i.getStringExtra("DATE_OF_BIRTH");
+         String strAge=i.getStringExtra("AGE");
+         String strContactNo=i.getStringExtra("CONTACT_NO");
+         String strEmail=i.getStringExtra("EMAIL");
+         String strPassword=i.getStringExtra("PASSWORD");
 
-    edtRoleId.setText(strRoleId);
+        edtRoleId.setText(strRoleId);
 
-    UserLangModel userLangModel=new UserLangModel();
-    edtFirstName.setText(strFirstName);
-    edtLastName.setText(strLastName);
-    edtAge.setText(strAge);
-    edtContactNo.setText(strContactNo);
-    edtEmail.setText(strEmail);
-    edtPassword.setText(strPassword);
+        UserLangModel userLangModel=new UserLangModel();
+        edtFirstName.setText(strFirstName);
+        edtLastName.setText(strLastName);
+        edtAge.setText(strAge);
+        edtContactNo.setText(strContactNo);
+        edtEmail.setText(strEmail);
+        edtPassword.setText(strPassword);
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,12 +135,13 @@ public class UserUpdateActivity extends AppCompatActivity {
                 String strContactNo=edtContactNo.getText().toString();
                 String strEmail=edtEmail.getText().toString();
                 String strPassword=edtPassword.getText().toString();
+                String strDate=tvDateOfBirth.getText().toString();
 
                 int id = radioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(id);
 
                 String strRadioButton = radioButton.getText().toString();
-                apiCall(userId, strRoleId, strFirstName, strLastName,strDob, strAge, strContactNo, strEmail,strPassword, strRadioButton);
+                apiCall(userId, strRoleId, strFirstName, strLastName,strDate, strAge, strContactNo, strEmail,strPassword, strRadioButton);
 
             }
         });
@@ -150,10 +151,10 @@ public class UserUpdateActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, util.USER_URL, new Response.Listener<String>() {
             @Override
-
             public void onResponse(String response) {
                 Log.e("api calling done", response);
-                Intent intent = new Intent(UserUpdateActivity.this, MaintenanceDisplayActivity.class);
+                Log.e("id in api: ",userId);
+                Intent intent = new Intent(UserUpdateActivity.this, UserDisplayActivity.class);
                 startActivity(intent);
             }
         }, new Response.ErrorListener() {

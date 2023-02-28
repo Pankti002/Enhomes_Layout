@@ -11,20 +11,55 @@
     android:background="#FFF0FF">
 
     <TextView
+        android:id="@+id/tv_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_head"
-        android:text="Data"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:textColor="#B765A6"
         android:layout_marginHorizontal="40dp"
-        android:textStyle="bold"
-        />
+        android:gravity="center"
+        android:text="Data"
+        android:textColor="#B765A6"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Column_head"
+        android:layout_below="@+id/tv_head">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:text="RoleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:layout_column="1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_column="1"
+                />
+        </TableRow>
+    </TableLayout>
+
 
     <ListView
         android:id="@+id/ls_listview"
-        android:layout_below="@+id/tv_head"
+        android:layout_below="@+id/Column_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

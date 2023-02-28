@@ -32,7 +32,7 @@ import utils.util;
 
 public class UserActivity extends AppCompatActivity {
 
-    EditText edtRoleId,edtFirstName,edtLastName,edtAge,edtGender,edtContactNo,edtEmail,edtPassword;
+    EditText edtRoleId,edtFirstName,edtLastName,edtAge,edtContactNo,edtEmail,edtPassword;
     TextView tvDateOfBirth;
 
     Button btnUser;
@@ -118,6 +118,7 @@ public class UserActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, util.USER_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("roleId in add:",strRoleId);
                 Log.e("Api calling done!",response);
                 Intent i = new Intent(UserActivity.this, UserDisplayActivity.class);
                 startActivity(i);
@@ -131,7 +132,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> hashMap = new HashMap<>();
-                hashMap.put("roleId", strRoleId);
+                hashMap.put("role", strRoleId);
                 hashMap.put("firstName", strFirstName);
                 hashMap.put("lastName", strLastName);
                 hashMap.put("dateOfBirth", strDob);
