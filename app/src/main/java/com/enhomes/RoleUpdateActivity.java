@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import utils.util;
 import utils.VolleySingleton;
@@ -45,8 +46,21 @@ public class RoleUpdateActivity extends AppCompatActivity {
         btnRole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strRoleName=edtRoleName.getText().toString();
-                RoleApi(strRoleId, strRoleName);
+                String strRoleName = edtRoleName.getText().toString();
+                if(strRoleName.length()==0)
+                {
+                    edtRoleName.requestFocus();
+                    edtRoleName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strRoleName.matches("[a-zA-Z ]+"))
+                {
+                    edtRoleName.requestFocus();
+                    edtRoleName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else {
+                    Toast.makeText(RoleUpdateActivity.this, "Validation Successful", Toast.LENGTH_LONG).show();
+                    RoleApi(strRoleId, strRoleName);
+                }
             }
         });
 

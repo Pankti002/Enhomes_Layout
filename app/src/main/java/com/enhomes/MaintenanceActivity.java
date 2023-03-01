@@ -102,7 +102,40 @@ public class MaintenanceActivity extends AppCompatActivity {
                 Log.e("Last: ", strLastDate);
 
                 String strRadioButton = radioButton.getText().toString();
-                apiCall("strHouseId",strCreateDate, strMaintenanceMonth,strMaintenanceAmount,strRadioButton,strPaymentDate, strLastDate,strPenalty);
+                if(strCreateDate.length()==0)
+                {
+                    tvDisDate.requestFocus();
+                    tvDisDate.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(strMaintenanceAmount.length()==0)
+                {
+                    edtMaintenanceAmount.requestFocus();
+                    edtMaintenanceAmount.setError("FIELD CSNNOT BE EMPTY");
+                }
+                else if(!strMaintenanceAmount.matches("^[0-9]{1,10}$"))
+                {
+                    edtMaintenanceAmount.requestFocus();
+                    edtMaintenanceAmount.setError("ENTER ONLY DIGITS");
+                }
+                else if(strPaymentDate.length()==0)
+                {
+                    tvPayDate.requestFocus();
+                    tvPayDate.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(strLastDate.length()==0)
+                {
+                    tvLastDate.requestFocus();
+                    tvLastDate.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strPenalty.matches("^[0-9]{1,10}$"))
+                {
+                    edtPenalty.requestFocus();
+                    edtPenalty.setError("ENTER ONLY DIGITS");
+                }
+                else
+                {
+                    apiCall("strHouseId", strCreateDate, strMaintenanceMonth, strMaintenanceAmount, strRadioButton, strPaymentDate, strLastDate, strPenalty);
+                }
             }
         });
 

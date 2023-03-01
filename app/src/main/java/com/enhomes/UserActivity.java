@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -108,8 +109,75 @@ public class UserActivity extends AppCompatActivity {
                 RadioButton radioButton = findViewById(id);
                 String strRadioButton=radioButton.getText().toString();
 
-                Userapicall(strRoleId,strFirstName,strLastName,strDob,strAge,strRadioButton,strContactNo,strEmail,strPassword);
-
+                if(strFirstName.length()==0)
+                {
+                    edtFirstName.requestFocus();
+                    edtFirstName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strFirstName.matches("[a-zA-Z ]+"))
+                {
+                    edtFirstName.requestFocus();
+                    edtFirstName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else if(strLastName.length()==0)
+                {
+                    edtLastName.requestFocus();
+                    edtLastName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strLastName.matches("[a-zA-Z ]+"))
+                {
+                    edtLastName.requestFocus();
+                    edtLastName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else if(strDob.length()==0)
+                {
+                    tvDateOfBirth.requestFocus();
+                    tvDateOfBirth.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(strAge.length()==0)
+                {
+                    edtAge.requestFocus();
+                    edtAge.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strAge.matches("^[0-9]{1,10}$"))
+                {
+                    edtAge.requestFocus();
+                    edtAge.setError("ENTER ONLY DIGITS");
+                }
+                else if(strContactNo.length()==0)
+                {
+                    edtContactNo.requestFocus();
+                    edtContactNo.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strContactNo.matches("^[0-9]{10}$"))
+                {
+                    edtContactNo.requestFocus();
+                    edtContactNo.setError("PLEASE ENTER 10 DIGITS ONLY");
+                }
+                else if(strEmail.length()==0)
+                {
+                    edtEmail.requestFocus();
+                    edtEmail.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strEmail.matches("^[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]{0,4}$"))
+                {
+                    edtEmail.requestFocus();
+                    edtEmail.setError("ENTER A VALID EMAIL ADDRESS");
+                }
+                else if(strPassword.length()==0)
+                {
+                    edtPassword.requestFocus();
+                    edtPassword.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strPassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"))
+                {
+                    edtPassword.requestFocus();
+                    edtPassword.setError("PASSWORD MUST CONTAIN AT LEAST :\n ONE DIGIT, ONE LOWERCASE LETTER, ONE UPPERCASE LETTER,AND A SPECIAL CHARATER\nNO SPACE ALLOWED\nMINIMUM 8 CHARACTERS ALLOWED");
+                }
+                else {
+                    Toast.makeText(UserActivity.this,"Validation Successful",Toast.LENGTH_LONG).show();
+                    Userapicall(strRoleId, strFirstName, strLastName, strDob, strAge, strRadioButton, strContactNo, strEmail, strPassword);
+                }
             }
         });
     }

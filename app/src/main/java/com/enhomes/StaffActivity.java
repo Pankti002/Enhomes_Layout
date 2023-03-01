@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -153,9 +154,72 @@ public class StaffActivity extends AppCompatActivity {
                 String strEntryTime=edtEntryTime.getText().toString();
                 String strExitTime=edtExitTime.getText().toString();
 
-                Log.e("Data: ",strStaffName+" "+strContact+" "+strAddress+" "+strAgencyName+" "+strAgencyContact+" "+strEntryTime+" "+strExitTime+" "+strStaff);
-                apicall(strStaffName,strStaff,strEntryTime,strExitTime,strContact,strAddress,strAgencyName,strAgencyContact);
 
+                if(strStaffName.length()==0)
+                {
+                    edtStaffName.requestFocus();
+                    edtStaffName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strStaffName.matches("[a-zA-Z ]+"))
+                {
+                    edtStaffName.requestFocus();
+                    edtStaffName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else if(strEntryTime.length()==0)
+                {
+                    tvEntry.requestFocus();
+                    tvEntry.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(strExitTime.length()==0)
+                {
+                    tvExit.requestFocus();
+                    tvExit.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(strContact.length()==0)
+                {
+                    edtContact.requestFocus();
+                    edtContact.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strContact.matches("^[0-9]{10}$"))
+                {
+                    edtContact.requestFocus();
+                    edtContact.setError("PLEASE ENTER 10 DIGITS ONLY");
+                }
+                else if(strAddress.length()==0)
+                {
+                    edtAddress.requestFocus();
+                    edtAddress.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strAddress.matches("[a-zA-Z ]+"))
+                {
+                    edtAddress.requestFocus();
+                    edtAddress.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else if(strAgencyName.length()==0)
+                {
+                    edtAgencyName.requestFocus();
+                    edtAgencyName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strAgencyName.matches("[a-zA-Z ]+"))
+                {
+                    edtAgencyName.requestFocus();
+                    edtAgencyName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else if(strAgencyContact.length()==0)
+                {
+                    edtAgencyContact.requestFocus();
+                    edtAgencyContact.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strAgencyContact.matches("^[0-9]{10}$"))
+                {
+                    edtAgencyContact.requestFocus();
+                    edtAgencyContact.setError("PLEASE ENTER 10 DIGITS ONLY");
+                }
+                else {
+                    Toast.makeText(StaffActivity.this,"Validation Successful",Toast.LENGTH_LONG).show();
+                    Log.e("Data: ", strStaffName + " " + strContact + " " + strAddress + " " + strAgencyName + " " + strAgencyContact + " " + strEntryTime + " " + strExitTime + " " + strStaff);
+                    apicall(strStaffName, strStaff, strEntryTime, strExitTime, strContact, strAddress, strAgencyName, strAgencyContact);
+                }
             }
         });
 

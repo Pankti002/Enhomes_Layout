@@ -35,8 +35,19 @@ public class PlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String strPlaceDetails = edtPlaceDetails.getText().toString();
-
-                placeApi(strPlaceDetails);
+                if(strPlaceDetails.length()==0)
+                {
+                    edtPlaceDetails.requestFocus();
+                    edtPlaceDetails.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strPlaceDetails.matches("[a-zA-Z ]+"))
+                {
+                    edtPlaceDetails.requestFocus();
+                    edtPlaceDetails.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else {
+                    placeApi(strPlaceDetails);
+                }
             }
         });
     }

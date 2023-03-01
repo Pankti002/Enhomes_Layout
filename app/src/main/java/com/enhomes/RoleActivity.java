@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,8 +38,22 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String strRoleName = edtRoleName.getText().toString();
-                Log.e("roleName : ",strRoleName);
-                roleApi(strRoleName);
+                if(strRoleName.length()==0)
+                {
+                    edtRoleName.requestFocus();
+                    edtRoleName.setError("FIELD CANNOT BE EMPTY");
+                }
+                else if(!strRoleName.matches("[a-zA-Z ]+"))
+                {
+                    edtRoleName.requestFocus();
+                    edtRoleName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                }
+                else
+                {
+                    Toast.makeText(RoleActivity.this,"Validation Successful",Toast.LENGTH_LONG).show();
+                    Log.e("roleName : ",strRoleName);
+                    roleApi(strRoleName);
+                }
             }
         });
     }
