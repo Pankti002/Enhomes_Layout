@@ -88,7 +88,7 @@ public class MaintenanceActivity extends AppCompatActivity {
         btnMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String strHouseId=edtHouseId.getText().toString();
+                String strHouseId=edtHouseId.getText().toString();
                 String strMaintenanceAmount = edtMaintenanceAmount.getText().toString();
                 String strPenalty = edtPenalty.getText().toString();
                 String strCreateDate = tvDisDate.getText().toString();
@@ -110,7 +110,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 else if(strMaintenanceAmount.length()==0)
                 {
                     edtMaintenanceAmount.requestFocus();
-                    edtMaintenanceAmount.setError("FIELD CSNNOT BE EMPTY");
+                    edtMaintenanceAmount.setError("FIELD CANNOT BE EMPTY");
                 }
                 else if(!strMaintenanceAmount.matches("^[0-9]{1,10}$"))
                 {
@@ -134,7 +134,7 @@ public class MaintenanceActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    apiCall("strHouseId", strCreateDate, strMaintenanceMonth, strMaintenanceAmount, strRadioButton, strPaymentDate, strLastDate, strPenalty);
+                    apiCall(strHouseId, strCreateDate, strMaintenanceMonth, strMaintenanceAmount, strRadioButton, strPaymentDate, strLastDate, strPenalty);
                 }
             }
         });

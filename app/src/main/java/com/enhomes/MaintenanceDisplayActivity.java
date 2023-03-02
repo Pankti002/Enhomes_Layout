@@ -62,6 +62,7 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                         JSONObject house = jsonObject1.getJSONObject("house");
                         String strHouseId = house.getString("_id");
+
                         String strMaintenanceId = jsonObject1.getString("_id");
                         String strCreationDate = jsonObject1.getString("creationDate");
                         String strMonth = jsonObject1.getString("month");
@@ -82,6 +83,7 @@ public class MaintenanceDisplayActivity extends AppCompatActivity {
                         maintenanceLangModel.setPaymentDate(strPayDate);
                         maintenanceLangModel.setLastDate(strLastDate);
                         maintenanceLangModel.setPenalty(strPenalty);
+
                         arrayList.add(maintenanceLangModel);
 
                     }

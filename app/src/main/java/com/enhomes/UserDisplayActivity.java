@@ -39,7 +39,7 @@ public class UserDisplayActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserDisplayActivity.this, UserActivity.class);
+                Intent intent = new Intent(UserDisplayActivity.this, UserDisplayActivity.class);
                 startActivity(intent);
             }
         });
