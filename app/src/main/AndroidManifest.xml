@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UserDisplayActivity"
+            android:name=".MaintenanceActivity"
             android:exported="false" />
         <activity
             android:name=".StaffDisplayActivity"
@@ -52,6 +52,9 @@
             android:name=".RoleActivity"
             android:exported="false" />
         <activity
+            android:name=".UserActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -61,7 +64,7 @@
             android:name=".UserUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".MaintenanceActivity"
+            android:name=".UserDisplayActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

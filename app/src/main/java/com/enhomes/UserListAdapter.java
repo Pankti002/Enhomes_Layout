@@ -56,7 +56,7 @@ public class UserListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String id = userLangModelArrayList.get(position).get_id();
-                Log.e("id in edit: ",id);
+                Log.e("id in edit-adapter: ",id);
 
                 Intent intent=new Intent(context,UserUpdateActivity.class);
                 intent.putExtra("USER_ID",id);
@@ -78,19 +78,10 @@ public class UserListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 String id = userLangModelArrayList.get(position).get_id();
-                Log.e("id in edit: ",id);
+                Log.e("id in delete: ",id);
 
                 Intent intent=new Intent(context,UserUpdateActivity.class);
                 intent.putExtra("USER_ID",id);
-                intent.putExtra("ROLE_ID",userLangModelArrayList.get(position).getRoleId());
-                intent.putExtra("FIRST_NAME",userLangModelArrayList.get(position).getFirstName());
-                intent.putExtra("LAST_NAME",userLangModelArrayList.get(position).getLastName());
-                intent.putExtra("DATE_OF_BIRTH",userLangModelArrayList.get(position).getDateOfBirth());
-                intent.putExtra("Age",userLangModelArrayList.get(position).getAge());
-                intent.putExtra("GENDER",userLangModelArrayList.get(position).getGender());
-                intent.putExtra("CONTACT_NO",userLangModelArrayList.get(position).getContactNo());
-                intent.putExtra("EMAIL",userLangModelArrayList.get(position).getEmail());
-                intent.putExtra("PASSWORD",userLangModelArrayList.get(position).getPassword());
 
                 context.startActivity(intent);
             }
