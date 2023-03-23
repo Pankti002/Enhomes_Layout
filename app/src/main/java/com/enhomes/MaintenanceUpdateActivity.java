@@ -60,8 +60,10 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
 
+
         Intent i = getIntent();
 
+        spinnerMonth = findViewById(R.id.spinner_month);
         edtHouseId = findViewById(R.id.et_houseId);
         edtMaintenanceAmount = findViewById(R.id.et_amt);
         edtPenalty = findViewById(R.id.et_penalty);
@@ -82,15 +84,33 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
 
+
+
         btnMaintenance = findViewById(R.id.btn_maintenance);
 
         //    Log.e("MAINTENANCE_ID", String.valueOf(maintenanceId));
         String strMaintenanceAmount = i.getStringExtra("MAINTENANCE_AMOUNT");
         String strPenalty = i.getStringExtra("PENALTY");
         String strCreationDate = i.getStringExtra("CREATION_DATE");
+        String strSelMonth=i.getStringExtra("MONTH");
         String strPaymentDate = i.getStringExtra("PAYMENT_DATE");
         String strLastDate = i.getStringExtra("LAST_DATE");
+
         String maintenanceId = i.getStringExtra("MAINTENANCE_ID");
+
+
+        //spinner auto selection
+        Log.e("month: ",strSelMonth);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strMonths);
+        int position = adapter.getPosition(strSelMonth);
+        spinnerMonth.post(new Runnable() {
+            @Override
+            public void run() {
+                spinnerMonth.setSelection(position);
+            }
+        });
+
+
 
         //set text
         MaintenanceLangModel maintenanceLangModel = new MaintenanceLangModel();
@@ -99,6 +119,8 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
         tvDisDate.setText(strCreationDate);
         tvPayDate.setText(strPaymentDate);
         tvLastDate.setText(strLastDate);
+        spinnerMonth.setSelection(7);
+
 
         //normal code
         btnMaintenance.setText("Update Maintenance");
@@ -130,13 +152,14 @@ public class MaintenanceUpdateActivity extends AppCompatActivity {
         spinnerMonth = findViewById(R.id.spinner_month);
 
         ArrayAdapter<String> arrayAdapter = new
-                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strMonths) {
+                ArrayAdapter<String>(this,R.layout.spinner, strMonths) {
                     @Override
                     public View getDropDownView(int position, @Nullable View convertView,
                                                 @NonNull ViewGroup parent) {
 
                         TextView tvData = (TextView) super.getDropDownView(position, convertView, parent);
-                        tvData.setTextColor(Color.WHITE);
+
+                        tvData.setTextColor(Color.BLACK);
                         tvData.setTextSize(20);
                         return tvData;
                     }

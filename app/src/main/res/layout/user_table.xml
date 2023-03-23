@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 <HorizontalScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/horizontalScrollView">
@@ -15,51 +18,77 @@
         android:id="@+id/tv_role_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_fn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
+
 
     <TextView
         android:id="@+id/tv_ln"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_dob"
         android:layout_width="wrap_content"
+        android:padding="5dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_gen"
@@ -67,47 +96,72 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
+        android:padding="5dp"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_cnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
+
 
     <TextView
         android:id="@+id/tv_em"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/cell_shape"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/tv_pwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="@drawable/cell_shape"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_pwd"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:padding="5dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    <View-->
+<!--        android:layout_width="2dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@android:color/black"/>-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/img_edit"
-        android:background="@drawable/cell_shape"
         android:padding="10dp"
         android:src="@drawable/ic_edit"/>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -117,3 +171,4 @@
         android:src="@drawable/ic_baseline_delete_24"/>
 </LinearLayout>
 </HorizontalScrollView>
+</LinearLayout>

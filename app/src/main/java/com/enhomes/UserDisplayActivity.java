@@ -43,10 +43,10 @@ public class UserDisplayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        UpdateUserApi();
+        GetUserApi();
     }
 
-    private void UpdateUserApi() {
+    private void GetUserApi() {
         ArrayList<UserLangModel> arrayList = new ArrayList<UserLangModel>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, util.USER_URL, new Response.Listener<String>() {
             @Override

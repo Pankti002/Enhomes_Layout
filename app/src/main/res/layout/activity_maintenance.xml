@@ -69,11 +69,12 @@
 
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:id="@+id/spinner_month"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:textColor="#000"
+        android:popupBackground="@color/white"
+
 
         />
 

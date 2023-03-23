@@ -40,19 +40,19 @@
             android:name=".PlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".MaintenanceDisplayActivity"
+            android:name=".RoleDisplayActivity"
             android:exported="false" />
         <activity
             android:name=".RoleDeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".RoleDisplayActivity"
+            android:name=".UserActivity"
             android:exported="false" />
         <activity
             android:name=".RoleActivity"
             android:exported="false" />
         <activity
-            android:name=".UserActivity"
+            android:name=".MaintenanceDisplayActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

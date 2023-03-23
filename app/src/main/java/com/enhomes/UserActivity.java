@@ -24,6 +24,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +44,8 @@ public class UserActivity extends AppCompatActivity {
     Button btnUser;
     ImageButton btnDate;
 
+    String roleId;
+
     RadioGroup radioGroup;
     RadioButton rbfemale,rbmale;
     private int date;
@@ -50,6 +57,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+//        RoleListAdapter roleListAdapter=RoleListAdapter();
+//        Log.e(roleListAdapter);
 
         btnUser=findViewById(R.id.btn_user);
         edtRoleId=findViewById(R.id.et_roleId);
@@ -72,6 +82,9 @@ public class UserActivity extends AppCompatActivity {
         date = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
+
+        Log.e("calling","role APi");
+      RoleApi();
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,17 +200,53 @@ public class UserActivity extends AppCompatActivity {
 //                }
                 else {
                     Toast.makeText(UserActivity.this,"Validation Successful",Toast.LENGTH_LONG).show();
-                    Userapicall(strRoleId, strFirstName, strLastName, strDob, strAge, strRadioButton, strContactNo, strEmail, strPassword);
+                    Userapicall(roleId, strFirstName, strLastName, strDob, strAge, strRadioButton, strContactNo, strEmail, strPassword);
                 }
             }
         });
     }
 
+    private void RoleApi() {
+        ArrayList<RoleLangModel> arrayList=new ArrayList<RoleLangModel>();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, util.ROLE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.e("inside","role Api");
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String strRoleId=jsonObject1.getString("_id");
+                        String strRoleName = jsonObject1.getString("roleName");
+
+                        if(strRoleName.equalsIgnoreCase("user")) {
+                            roleId = jsonObject1.getString(("_id"));
+//                            Log.e("roleId: ",roleId);
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        VolleySingleton.getInstance(UserActivity.this).addToRequestQueue(stringRequest);
+    }
+
+
     private void Userapicall(String strRoleId, String strFirstName, String strLastName, String strDob, String strAge, String strRadioButton, String strContactNo, String strEmail, String strPassword) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, util.USER_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("roleId in add:",strRoleId);
+                Log.e("roleId in add:",roleId);
                 Log.e("Api calling done!",response);
                 Intent i = new Intent(UserActivity.this, UserDisplayActivity.class);
                 startActivity(i);

@@ -75,6 +75,7 @@ public class MaintenanceListAdapter extends BaseAdapter {
                 intent.putExtra("MAINTENANCE_ID", id);
                 intent.putExtra("MAINTENANCE_AMOUNT", maintenanceLangModelArrayList.get(position).getMaintenanceAmount());
                 intent.putExtra("PENALTY", maintenanceLangModelArrayList.get(position).getPenalty());
+                intent.putExtra("MONTH",maintenanceLangModelArrayList.get(position).getMonth());
                 intent.putExtra("CREATION_DATE", maintenanceLangModelArrayList.get(position).getCreationDate());
                 intent.putExtra("PAYMENT_DATE", maintenanceLangModelArrayList.get(position).getPaymentDate());
                 intent.putExtra("LAST_DATE", maintenanceLangModelArrayList.get(position).getLastDate());

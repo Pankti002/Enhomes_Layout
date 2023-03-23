@@ -33,7 +33,7 @@ import utils.util;
 
 public class UserUpdateActivity extends AppCompatActivity {
 
-    EditText edtRoleId,edtFirstName,edtLastName,edtAge,edtGender,edtContactNo,edtEmail,edtPassword;
+    EditText edtRoleId,edtFirstName,edtLastName,edtAge,edtContactNo,edtEmail,edtPassword;
     TextView tvDateOfBirth;
 
     Button btnUser,btnDeleteUser;
